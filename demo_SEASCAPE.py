@@ -16,7 +16,7 @@ if __name__ == "__main__":
     """
     top five classes by gpaAvg
     """
-    top_df = df.sort_values('gpaAvg', ascending=False).groupby('department').head(5)
+    top_df = df.groupby('department').mean().sort_values('gpaAvg', ascending=False).head(5)
     top_df = top_df.dropna()
     # print(top_df[['course', 'gpaAvg']])
     print(top_df.info)
