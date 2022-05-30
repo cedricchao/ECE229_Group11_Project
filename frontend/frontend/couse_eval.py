@@ -102,8 +102,8 @@ class course_eval():
             myDict_exp={i:v[0] for i,v in myDict_exp.items()}
             letter_actual_Dict[c]=max(myDict, key=myDict.get)
             letter_expected_Dict[c]=max(myDict_exp, key=myDict_exp.get)
-        trace1=bardata(x=list(letter_actual_Dict.keys()),y=[grades[v] for i,v in letter_actual_Dict.items()],text=list(letter_actual_Dict.values()), name= 'Actual letter grade')
-        trace2=bardata(x=list(letter_expected_Dict.keys()),y=[grades[v] for i,v in letter_expected_Dict.items()],text=list(letter_expected_Dict.values()),name= 'Expected letter grade')
+        trace1=bardata(x=list(letter_actual_Dict.keys()),y=[grades[v.strip()] for i,v in letter_actual_Dict.items()],text=list(letter_actual_Dict.values()), name= 'Actual letter grade')
+        trace2=bardata(x=list(letter_expected_Dict.keys()),y=[grades[v.strip()] for i,v in letter_expected_Dict.items()],text=list(letter_expected_Dict.values()),name= 'Expected letter grade')
         return [trace1,trace2]
 
 

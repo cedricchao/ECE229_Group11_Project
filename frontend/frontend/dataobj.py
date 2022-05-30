@@ -20,9 +20,9 @@ class bar(BaseModel):
 class bardata(BaseModel):
     x: List
     y: List
-    type:str = 'bar'
-    text: str
+    text: List
     name:str
-    textposition: 'auto'
-    hoverinfo: 'none'
-    opacity: 0.5
+    textposition:str = 'auto'
+    hoverinfo:str = 'none'
+    opacity: float = 0.5
+    type:str = 'bar'
