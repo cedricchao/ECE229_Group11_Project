@@ -10,3 +10,10 @@ class obj(BaseModel):
 
 class input(BaseModel):
     inputs:List[str]
+
+class vector(BaseModel):
+    x:float
+    y:float
+
+class vectordict(BaseModel):
+    points:dict[str,vector]

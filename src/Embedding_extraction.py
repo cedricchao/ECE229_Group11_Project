@@ -76,7 +76,19 @@ def get_model(modelname:str='paraphrase-MiniLM-L6-v2')->SentenceTransformer:
     """
     return SentenceTransformer(modelname)
 
+def get_umap_feature(sentence_embedding_file:str='data/sentence_embedding.npy',dumpfilename:str='data/umap_embedding.npy')->None:
+    """
+    used to dump the umap embedding from the sentence embedding to plot the similarity
 
+    Args:
+        sentence_embedding_file (str, optional): File name for sentence embedding. Defaults to 'data/sentence_embedding.npy'.
+        dumpfilename (str, optional): name of the file to dump the umap features. Defaults to 'data/umap_embedding.npy'.
+    """
+    sentence_embedding_np = np.load(sentence_embedding_file)
+    import umap
+    u = umap.UMAP()
+    embedding = u.fit_transform(sentence_embedding_np)
+    np.save('data/umap_embedding',embedding)
 
 if __name__ == '__main__':
     dataframe = pd.read_csv('./data/dataframe_comb.csv')
