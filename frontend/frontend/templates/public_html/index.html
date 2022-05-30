@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Course Recommender">
+    <meta name="author" content="Team 11">
+    <title>Course Recommender</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel/css/owl.theme.default.css">
+
+    <!-- Bootstrap + Ollie main styles -->
+	<link rel="stylesheet" href="assets/css/ollie.css">
+    <script src='assets/js/plotly-2.12.1.min.js'></script>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <nav id="scrollspy" class="navbar navbar-light bg-light navbar-expand-lg fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="assets/imgs/brand.svg" alt="" class="brand-img"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Recommender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testmonial">Course similarity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#radar">Course Eval</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#UserStory">User Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <a class="nav-link btn btn-primary" href="components.html">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <header id="home" class="header">
+        <div class="overlay"></div>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">  
+            <div class="container">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">We Help you <br> Recommend Courses</h1>
+                            <a href="#about" class="nav-link">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">We Help you <br> Analyze Courses</h1>
+                             <a href="#about" class="nav-link">Learn More</a>
+                          </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="carousel-title">We Help you <br> Plan Courses</h1>
+                            <a href="#about" class="nav-link">Learn More</a>
+                          </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        
+    </header>
+
+    <section class="section" id="about">
+
+        <div class="container">
+
+            <div class="row align-items-center mr-auto">
+                <div class="col-md-4">
+                    <h3 class="section-title">About Us</h3>
+                    <h6 class="xs-font mb-0">we aim to build a recommendation system that guides UC San Diego students to choose the courses they would like to take. There can be multiple factors about which course to recommend: the content of interests, the prerequisites, the course level restrictions, average working hours, previous GPAs (for undergraduate courses only), etc. 
+                    </h6>
+
+                    <!-- <a href="javascript:void(0)">Read more...</a> -->
+                </div>
+                <div class="col-sm-6 col-md-4 ml-auto">
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-calendar"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">7</h4>
+                            <p>years of data</p>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-face-smile"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">15+</h4>
+                            <p>Department</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-star"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">5k+</h4>
+                            <p>Courses</p>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="icon-wrapper">
+                            <i class="ti-user"></i>
+                        </div>
+                        <div class="infos-wrapper">
+                            <h4 class="text-primary">200+</h4>
+                            <p>Professor data</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </section>
+    <script>
+        function myFunction() {
+        course_string=document.getElementById("fname").value;
+        postObj = {
+            body: [course_string]
+        }
+        let post = JSON.stringify(postObj)
+ 
+        const url = "getcourse"
+        let xhr = new XMLHttpRequest()
+
+        xhr.open('POST', url, true)
+        xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+        xhr.send(post);
+
+        xhr.onload = function () {
+                if(xhr.status === 200) {
+                    document.getElementById("demo").innerHTML = xhr.responseText
+                }
+            }
+        }
+        
+    </script>
+    <script>
+        function myClear() {
+            document.getElementById("demo").innerHTML = " ";
+            document.getElementById("fname").value = " ";
+        }
+    </script>
+    <section class="section" id="portfolio">
+        <div class="container">
+            <!-- <h6 class="xs-font mb-0">Culpa perferendis excepturi.</h6> -->
+            <h3 class="section-title pb-4">Recommender</h3>
+            
+                <label class='input' for="fname">Course name/Keywords:</label><br>
+                <input class='input' type="text" id="fname" name="fname"><br>
+                <p id="demo"></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-button" onclick="myClear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-button" onclick="myFunction()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+                
+            
+        </div>
+        
+        
+    </section>
+
+    <section class="section" id="testmonial">
+        <div class="container">
+            <h3 class="section-title">Course similarity analysis</h3>
+            <label class='input' for="fname">Course name/Course code sperated by comma:</label><br>
+            <input class='input' type="text" id="fnamegraph" name="fnamegraph"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-button" onclick="myGraphclear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-button" onclick="myGraph()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            <div id="similaritygraph" style="width:600px;height:550px;">
+            </div>
+            <script>
+                var layout = {
+                                xaxis: {
+                                        range: [ -3, 15.5 ]
+                                },
+                                yaxis: {
+                                        range: [ -3, 15.5]
+                                },
+                                legend: {
+                                        y: 0.5,
+                                        yref: 'paper',
+                                        font: {
+                                            family: 'Arial, sans-serif',
+                                            size: 20,
+                                            color: 'grey',
+                                        }
+                                },
+                                title:'Course Similarity',
+                                paper_bgcolor:'rgba(0,0,0,0)',
+                                plot_bgcolor:'rgba(0,0,0,0)'
+
+                    };
+                    Plotly.newPlot(document.getElementById('similaritygraph'),  layout);
+                    var x = document.getElementById("similaritygraph");
+                    x.style.display = "none";
+            </script>
+            <script>
+                function myGraph() {
+                course_string=document.getElementById("fnamegraph").value;
+                var x = document.getElementById("similaritygraph");
+                x.style.display = "block";
+                postObj = {
+                    body: [course_string]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getgraph"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            var dict = JSON.parse(xhr.responseText)
+                            console.log(dict)
+                            var trace1 = {
+                                            x: dict['x'],
+                                            y: dict['y'],
+                                            mode: 'markers+text',
+                                            type: 'scatter',
+                                            text: dict['text'],
+                                            textfont : {
+                                                family:'Times New Roman'
+                                            },
+                                            textposition: 'bottom center',
+                                            marker: { size: 12 }
+                                            };
+                            var layout = {
+                                xaxis: {
+                                        range: [ -3, 15.5 ]
+                                },
+                                yaxis: {
+                                        range: [ -3, 15.5]
+                                },
+                                legend: {
+                                        y: 0.5,
+                                        yref: 'paper',
+                                        font: {
+                                            family: 'Arial, sans-serif',
+                                            size: 20,
+                                            color: 'grey',
+                                        }
+                                },
+                                title:'Course Similarity',
+                                paper_bgcolor:'rgba(0,0,0,0)',
+                                plot_bgcolor:'rgba(0,0,0,0)'
+                             };
+                            var data = [trace1];
+                            Plotly.newPlot(document.getElementById('similaritygraph'), data, layout);
+                        }
+                    }
+                }
+                function myGraphclear(){
+                    document.getElementById("fnamegraph").value = " ";
+                    var x = document.getElementById("similaritygraph");
+                    x.style.display = "none";
+                }
+                
+            </script>
+            
+        </div>
+    </section>
+    <section class="section" id="radar">
+        <div class="container">
+            <h3 class="section-title mb-4">Radar Analysis</h3>
+            <label class='input' for="fname">Course name/Course code sperated by comma:</label><br>
+            <input class='input' type="text" id="fnameradar" name="fnameradar"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-buttonradar" onclick="myRadarclear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-buttonradar" onclick="myRadar()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            <div id="radargraph" style="width:600px;height:550px;">
+            </div>
+            <script>
+                layout = {
+                            polar: {
+                                    radialaxis: {
+                                        visible: true,
+                                        range: [0, 5]
+                                    }
+                                },
+                                paper_bgcolor:'rgba(0,0,0,0)',
+                                plot_bgcolor:'rgba(0,0,0,0)'
+                            }
+                    Plotly.newPlot(document.getElementById("radargraph"), layout)
+                    var x = document.getElementById("radargraph");
+                    x.style.display = "none";
+            </script>
+            <script>
+                function myRadar() {
+                course_string=document.getElementById("fnameradar").value;
+                var x = document.getElementById("radargraph");
+                x.style.display = "block";
+                postObj = {
+                    body: [course_string]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getradar"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            var dict = JSON.parse(xhr.responseText)
+                            console.log(dict['data'])
+                            layout = {
+                                    polar: {
+                                            radialaxis: {
+                                            visible: true,
+                                            range: [0, 5]
+                                            }
+                                        },
+                                    paper_bgcolor:'rgba(0,0,0,0)',
+                                    plot_bgcolor:'rgba(0,0,0,0)'
+                                    }
+                                    
+                            Plotly.newPlot(document.getElementById("radargraph"),dict['data'], layout)
+                        }
+                    }
+                }
+
+                function myRadarclear(){
+                    document.getElementById("fnameradar").value = " ";
+                    var x = document.getElementById("radargraph");
+                    x.style.display = "none";
+                }
+            </script>
+        </div>
+    </section>
+
+    <section class="section" id="GPA">
+        <div class="container">
+            <h3 class="section-title mb-4">Course GPA Analysis</h3>
+            <label class='input' for="fname">Course name/Course code:</label><br>
+            <input class='input' type="text" id="fnameGPA" name="fnameGPA"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-buttonGPA" onclick="myGPAclear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-buttonGPA" onclick="myGPA()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            <div id="GPAgraph" style="width:600px;height:550px;">
+            </div>
+            <script>
+                layout = {barmode: 'group'};
+                    Plotly.newPlot(document.getElementById("GPAgraph"), layout)
+                    var x = document.getElementById("GPAgraph");
+                    x.style.display = "none";
+            </script>
+            <script>
+                function myGPA() {
+                course_string=document.getElementById("fnameGPA").value;
+                var x = document.getElementById("GPAgraph");
+                x.style.display = "block";
+                postObj = {
+                    body: [course_string]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getcourseGPAgraph"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            var dict = JSON.parse(xhr.responseText)
+                            console.log(dict['data'])
+                            layout = {barmode: 'group'};
+                                    
+                            Plotly.newPlot(document.getElementById("GPAgraph"),dict['data'], layout)
+                        }
+                    }
+                }
+
+                function myGPAclear(){
+                    document.getElementById("fnameGPA").value = " ";
+                    var x = document.getElementById("GPAgraph");
+                    x.style.display = "none";
+                }
+            </script>
+        </div>
+    </section>
+
+    <section class="section" id="radarinstr">
+        <div class="container">
+            <h3 class="section-title mb-4">Instr Radar Analysis</h3>
+            <label class='input' for="fname">Instructor name:</label><br>
+            <input class='input' type="text" id="fnameradarinstr" name="fnameradarinstr"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-buttonradarinstr" onclick="myRadarinstrclear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-buttonradarinstr" onclick="myRadarinstr()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            <div id="radarinstrgraph" style="width:600px;height:550px;">
+            </div>
+            <script>
+                layout = {
+                            polar: {
+                                    radialaxis: {
+                                        visible: true,
+                                        range: [0, 5]
+                                    }
+                                },
+                                paper_bgcolor:'rgba(0,0,0,0)',
+                                plot_bgcolor:'rgba(0,0,0,0)'
+                            }
+                    Plotly.newPlot(document.getElementById("radarinstrgraph"), layout)
+                    var x = document.getElementById("radarinstrgraph");
+                    x.style.display = "none";
+            </script>
+            <script>
+                function myRadarinstr() {
+                instr_string=document.getElementById("fnameradarinstr").value;
+                var x = document.getElementById("radarinstrgraph");
+                x.style.display = "block";
+                postObj = {
+                    body: [instr_string]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getinstrradar"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            var dict = JSON.parse(xhr.responseText)
+                            console.log(dict['data'])
+                            layout = {
+                                    polar: {
+                                            radialaxis: {
+                                            visible: true,
+                                            range: [0, 5]
+                                            }
+                                        },
+                                    paper_bgcolor:'rgba(0,0,0,0)',
+                                    plot_bgcolor:'rgba(0,0,0,0)'
+                                    }
+                                    
+                            Plotly.newPlot(document.getElementById("radarinstrgraph"),dict['data'], layout)
+                        }
+                    }
+                }
+
+                function myRadarinstrclear(){
+                    document.getElementById("fnameradarinstr").value = " ";
+                    var x = document.getElementById("radarinstrgraph");
+                    x.style.display = "none";
+                }
+            </script>
+        </div>
+    </section>
+
+
+    <section class="section" id="instrgrade">
+        <div class="container">
+            <h3 class="section-title mb-4">Instr grade Analysis</h3>
+            <label class='input' for="fname">Instructor name:</label><br>
+            <input class='input' type="text" id="fnameinstrgrade" name="fnameinstrgrade"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-buttoninstrgrade" onclick="myinstrgradeclear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-buttoninstrgrade" onclick="myinstrgrade()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            <div id="instrgradegraph" style="width:600px;height:550px;">
+            </div>
+            <script>
+                layout = {title: 'Instr Grade Analysis for courses'};
+                    Plotly.newPlot(document.getElementById("instrgradegraph"), layout)
+                    var x = document.getElementById("instrgradegraph");
+                    x.style.display = "none";
+            </script>
+            <script>
+                function myinstrgrade() {
+                instr_string=document.getElementById("fnameinstrgrade").value;
+                var x = document.getElementById("instrgradegraph");
+                x.style.display = "block";
+                postObj = {
+                    body: [instr_string]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getinstrgradegraph"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            var dict = JSON.parse(xhr.responseText)
+                            console.log(dict['data'])
+                            layout = {title: 'Instr Grade Analysis for courses'};
+                                    
+                            Plotly.newPlot(document.getElementById("instrgradegraph"),dict['data'], layout)
+                        }
+                    }
+                }
+
+                function myinstrgradeclear(){
+                    document.getElementById("fnameinstrgrade").value = " ";
+                    var x = document.getElementById("instrgradegraph");
+                    x.style.display = "none";
+                }
+            </script>
+        </div>
+    </section>
+
+    <section class="section bg-overlay">
+    
+        
+       
+        
+    </section>
+
+    <section class="section" id="UserStory">
+
+        <div class="container mb-3">
+            <h3 class="section-title mb-5">User Story</h3>
+            <div class="blog-wrapper">
+                <div class="img-wrapper">
+                    <img src="assets/imgs/img-3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                    <div class="date-container">
+                        <h6 class="day">29</h6>
+                        <h6 class="mun">Jun</h6> 
+                    </div>
+                </div>
+                <div class="txt-wrapper">
+                    <h4 class="blog-title">User Story</h4>
+                    <h6 class="xs-font mb-0">Majority of potential users for this recommendation system are students. While designing products, product managers need to look at things from the perspective of potential users.  
+                        A potential end-user could be a second-year data science major student who is on the path of finishing his major requirements and also the general education (GE) requirements. In addition, he might be struggling to improve his GPA because he did not do very well in the first year. Besides his academic interests, he is also interested in taking courses purely out of interest, like music and theatre classes. Besides school, he has extracurricular activities and clubs to attend to. He needs to find a balance between school and extracurricular.
+                        In summary, his needs are finishing major/GE requirements, improving his GPA, and discovering potential interests.
+                        For the first need, the product will have the information on the requirements of the data science major and his progress so that the product will not recommend courses that he has already taken. For the second need, the product will first ask him to input his current GPA and then list the average hours dedicated and previous GPA of the recommended courses so that he can decide for himself. For the last need, the product will list classes that others spoke highly of and also have nice GPAs so that he can keep up with both his interests and GPA improvement plan.
+                    </h6>
+
+                    <!-- <a href="#" class="badge badge-info">Graphic Design</a> -->
+
+                    <!-- <h6 class="blog-footer">
+                        <a href="javascript:void(0)"><i class="ti-user"></i> Admin </a> |
+                        <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 213 </a> |
+                        <a href="javascript:void(0)"><i class="ti-comments"></i> 123</a>
+                    </h6> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="contact" class="section pb-0">
+
+        <div class="container">
+            <!-- <h6 class="xs-font mb-0">Culpa perferendis excepturi.</h6> -->
+            <h3 class="section-title mb-5">Contact Us</h3>
+
+            <div class="row align-items-center justify-content-between">
+                <!-- <div class="col-md-8 col-lg-7">
+
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="col form-group">
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Your Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block" value="Send Message">
+                        </div>
+                    </form>
+                </div> -->
+                <div class="col-md-4 d-none d-md-block order-1">
+                    <ul class="list">
+                        <li class="list-head">
+                            <h6>CONTACT INFO add all email id</h6>
+                        </li>
+                        <li class="list-body">
+                            <p class="py-2"><i class="ti-email"></i> sbadam@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> caz010@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> wez205@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> yayao@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> zew038@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> jiw106@ucsd.edu</p>
+                            <p class="py-2"><i class="ti-email"></i> dchowdhury@ucsd.edu</p>
+
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+
+            <footer class="footer mt-5 border-top">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-6 text-center text-md-left">
+                        <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a target="_blank" href="http://www.devcrud.com">DevCRUD</a></p>
+                    </div>
+                    <!-- <div class="col-md-6 text-center text-md-right">
+                        <div class="social-links">
+                            <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+                        </div>
+                    </div> -->
+                </div> 
+            </footer>
+        </div>
+    </section> 
+	
+	<!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    
+    <!-- Owl carousel  -->
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.js"></script>
+
+
+    <!-- Ollie js -->
+    <script src="assets/js/Ollie.js"></script>
+
+</body>
+</html>
