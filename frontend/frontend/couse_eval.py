@@ -26,14 +26,16 @@ class course_eval():
             if row['instr'] not in self.profname[depart]:
                 self.profname[depart].add(row['instr'])
             
-    def getprofname(self,name)->List:
+    def getprofname(self,department:str)->List:
         """
-        Return the Professor name
+        Return the list of  prof names from the department
+        Args:
+            department (str): Name of the department
+
         Returns:
-            List: list of professor name
+            List: prof names
         """
-        print(name)
-        return sorted(list(self.profname[name]))
+        return sorted(list(self.profname[department]))
     
     def getdeptname(self)->List:
         """
