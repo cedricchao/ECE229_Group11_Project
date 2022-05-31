@@ -1,9 +1,0 @@
-numpy
-pandas
-sentence_transformers
-faiss
-pytest
-pydantic
-fastapi
-uvicorn
-umap

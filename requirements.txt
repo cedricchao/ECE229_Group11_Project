@@ -1,0 +1,10 @@
+numpy
+pandas
+faiss-cpu
+pytest
+pydantic
+fastapi
+uvicorn
+umap-learn
+fastapi
+sentence-transformers

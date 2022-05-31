@@ -1,5 +1,3 @@
-from typing import List
-from urllib import response
 from recommendation import courserecommender
 from dataobj import obj,input,vectordict
 import json
