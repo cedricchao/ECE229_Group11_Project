@@ -148,8 +148,11 @@
         </div>
     </section>
     <script>
+        
         function myFunction() {
         course_string=document.getElementById("fname").value;
+        var x = document.getElementById("table");
+        x.style.display = "block";
         postObj = {
             body: [course_string]
         }
@@ -164,7 +167,25 @@
 
         xhr.onload = function () {
                 if(xhr.status === 200) {
-                    document.getElementById("demo").innerHTML = xhr.responseText
+                    // document.getElementById("demo").innerHTML = xhr.responseText
+                    var dict = JSON.parse(xhr.responseText)
+                    var data = [{
+                                type: 'table',
+                                header: {
+                                        values: [["<b>Course</b>"], ["<b>Description</b>"]],
+                                        align: "center",
+                                        line: {width: 1, color: 'black'},
+                                        fill: {color: "grey"},
+                                        font: {family: "Arial", size: 12, color: "white"}
+                                },
+                                cells: {
+                                values: dict['data'],
+                                align: "center",
+                                line: {color: "black", width: 1},
+                                font: {family: "Arial", size: 11, color: ["black"]}
+                                }
+                                }]
+                                Plotly.newPlot('table', data);
                 }
             }
         }
@@ -172,8 +193,9 @@
     </script>
     <script>
         function myClear() {
-            document.getElementById("demo").innerHTML = " ";
             document.getElementById("fname").value = " ";
+            var x = document.getElementById("table");
+            x.style.display = "none";
         }
     </script>
     <section class="section" id="portfolio">
@@ -183,7 +205,7 @@
             
                 <label class='input' for="fname">Course name/Keywords:</label><br>
                 <input class='input' type="text" id="fname" name="fname"><br>
-                <p id="demo"></p>
+                <p></p>
                 <div class="navbar-expand-lg"> 
                     <ul class = 'navbar-nav ml-auto'>
                         <li class="nav-item ml-0 ml-lg-4">
@@ -194,8 +216,11 @@
                         </li>
                     </ul>
                 </div>
-                
-            
+                <div id="table" style="width:1000px;height:800px;"></div>
+                <script>
+                    var x = document.getElementById("table");
+                    x.style.display = "none";
+                </script>
         </div>
         
         

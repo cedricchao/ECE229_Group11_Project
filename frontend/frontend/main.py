@@ -23,7 +23,10 @@ def getcourse():
         myobj = {'inputs': request.json['body']}
         x = requests.post(url, data = json.dumps(myobj))
         #print(x.json())
-        return json.dumps(list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()))
+        dic={}
+        dic['data']=[list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()),
+                    list(x.json()['recommend_set'][request.json['body'][0]]['courses'].values())]
+        return json.dumps(dic)#list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()))
     return 'hello world'
 
 @app.route('/getgraph', methods=['POST','GET'])
