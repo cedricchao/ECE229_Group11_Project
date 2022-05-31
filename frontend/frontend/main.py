@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -22,12 +23,25 @@ def getcourse():
         url = 'http://127.0.0.1:8000/recommend'
         myobj = {'inputs': request.json['body']}
         x = requests.post(url, data = json.dumps(myobj))
-        #print(x.json())
         dic={}
         dic['data']=[list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()),
                     list(x.json()['recommend_set'][request.json['body'][0]]['courses'].values())]
-        return json.dumps(dic)#list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()))
+        return json.dumps(dic)
     return 'hello world'
+
+@app.route('/getprofname',methods=['POST'])
+def getname():
+    if request.method != 'POST':
+        return 
+    dic={'name':course_eval_obj.getprofname(request.json['body'][0])}
+    return json.dumps(dic)
+
+@app.route('/getdepartment',methods=['GET'])
+def getdepartment():
+    if request.method != 'GET':
+        return 
+    dic={'name':course_eval_obj.getdeptname()}
+    return json.dumps(dic)
 
 @app.route('/getgraph', methods=['POST','GET'])
 def getgraph():
@@ -57,7 +71,6 @@ def getradar():
         if r is None:
             continue
         data.append(radar(r=r,theta=t,name=course))
-    #print(radardata(data=data).json())
     return radardata(data=data).json()
 
 

@@ -338,6 +338,11 @@
             
         </div>
     </section>
+    <section>
+        <div class="container">
+
+        </div>
+    </section>
     <section class="section" id="radar">
         <div class="container">
             <h3 class="section-title mb-4">Radar Analysis</h3>
@@ -464,7 +469,10 @@
                         if(xhr.status === 200) {
                             var dict = JSON.parse(xhr.responseText)
                             console.log(dict['data'])
-                            layout = {barmode: 'group'};
+                            layout = {barmode: 'group',
+                                    paper_bgcolor:'rgba(0,0,0,0)',
+                                    plot_bgcolor:'rgba(0,0,0,0)'
+                                    };
                                     
                             Plotly.newPlot(document.getElementById("GPAgraph"),dict['data'], layout)
                         }
@@ -480,20 +488,90 @@
         </div>
     </section>
 
+    <script>
+        function jsFunctionradar(value){
+            document.getElementById('fnameradarinstr').value = value
+            myRadarinstr()
+        }
+        function myDropdowndepartment1()
+        {
+            const url = "getdepartment"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('GET', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send()
+                xhr.onload = function () {
+                    if(xhr.status === 200) {
+                        var dic = JSON.parse(xhr.responseText)
+                        console.log(xhr.responseText)
+                        var select = document.getElementById("department_name1");
+                        for (const val of dic['name'])
+                        {
+                            var option = document.createElement("option");
+                            option.value = val;
+                            option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                            select.appendChild(option);
+                        }
+                    }
+                }
+        }
+        myDropdowndepartment1()
+        function departmentFunctionradar(value){
+            postObj = {
+                    body: [value]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getprofname"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                        var dic = JSON.parse(xhr.responseText)
+                        var select = document.getElementById("prof_name1");
+                        document.getElementById('prof_name1').options.length = 0;
+                        for (const val of dic['name'])
+                        {
+                            var option = document.createElement("option");
+                            option.value = val;
+                            option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                            select.appendChild(option);
+                        }
+
+                        }
+                    }
+
+        }
+
+    </script>
     <section class="section" id="radarinstr">
         <div class="container">
             <h3 class="section-title mb-4">Instr Radar Analysis</h3>
+            <label class='input' for="fname">Department name:</label><br>
+            <select name="department" id="department_name1"  onchange="departmentFunctionradar(this.value);"><br>
+            </select><br>
             <label class='input' for="fname">Instructor name:</label><br>
+            <select name="professor" id="prof_name1"  onchange="jsFunctionradar(this.value);"><br>
+            </select><br>
             <input class='input' type="text" id="fnameradarinstr" name="fnameradarinstr"><br>
+            <script>
+                var x =document.getElementById('fnameradarinstr')
+                x.style.display = "none";
+            </script>
             <p></p>
                 <div class="navbar-expand-lg"> 
                     <ul class = 'navbar-nav ml-auto'>
                         <li class="nav-item ml-0 ml-lg-4">
                             <button class="nav-link btn btn-primary" type="button" id="clear-buttonradarinstr" onclick="myRadarinstrclear()">Clear</button>
                         </li>
-                        <li class="nav-item ml-0 ml-lg-4">
+                        <!-- <li class="nav-item ml-0 ml-lg-4">
                             <button class="nav-link btn btn-primary" id="ajax-buttonradarinstr" onclick="myRadarinstr()">Try it</button>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             
@@ -560,21 +638,97 @@
         </div>
     </section>
 
+    <section>
+        <div class="container">
+
+        </div>
+    </section>
+    
+    <script>
+        function jsFunction(value){
+            document.getElementById('fnameinstrgrade').value = value
+            myinstrgrade()
+        }
+        function myDropdowndepartment()
+        {
+            const url = "getdepartment"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('GET', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send()
+                xhr.onload = function () {
+                    if(xhr.status === 200) {
+                        var dic = JSON.parse(xhr.responseText)
+                        console.log(xhr.responseText)
+                        var select = document.getElementById("department_name");
+                        for (const val of dic['name'])
+                        {
+                            var option = document.createElement("option");
+                            option.value = val;
+                            option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                            select.appendChild(option);
+                        }
+                    }
+                }
+        }
+        myDropdowndepartment()
+        function departmentFunction(value){
+            postObj = {
+                    body: [value]
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "getprofname"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                        var dic = JSON.parse(xhr.responseText)
+                        console.log(xhr.responseText)
+                        var select = document.getElementById("prof_name");
+                        document.getElementById('prof_name').options.length = 0;
+                        for (const val of dic['name'])
+                        {
+                            var option = document.createElement("option");
+                            option.value = val;
+                            option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                            select.appendChild(option);
+                        }
+
+                        }
+                    }
+
+        }
+    </script>
 
     <section class="section" id="instrgrade">
         <div class="container">
             <h3 class="section-title mb-4">Instr grade Analysis</h3>
+            <label class='input' for="fname">Department name:</label><br>
+            <select name="department" id="department_name"  onchange="departmentFunction(this.value);"><br>
+            </select><br>
             <label class='input' for="fname">Instructor name:</label><br>
+            <select name="professor" id="prof_name"  onchange="jsFunction(this.value);"><br>
+            </select><br>
             <input class='input' type="text" id="fnameinstrgrade" name="fnameinstrgrade"><br>
+            <script>
+                var x =document.getElementById('fnameinstrgrade')
+                x.style.display = "none";
+            </script>
             <p></p>
                 <div class="navbar-expand-lg"> 
                     <ul class = 'navbar-nav ml-auto'>
                         <li class="nav-item ml-0 ml-lg-4">
                             <button class="nav-link btn btn-primary" type="button" id="clear-buttoninstrgrade" onclick="myinstrgradeclear()">Clear</button>
                         </li>
-                        <li class="nav-item ml-0 ml-lg-4">
+                        <!-- <li class="nav-item ml-0 ml-lg-4">
                             <button class="nav-link btn btn-primary" id="ajax-buttoninstrgrade" onclick="myinstrgrade()">Try it</button>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             
@@ -607,8 +761,10 @@
                         if(xhr.status === 200) {
                             var dict = JSON.parse(xhr.responseText)
                             console.log(dict['data'])
-                            layout = {title: 'Instr Grade Analysis for courses'};
-                                    
+                            layout = {title: 'Instr Grade Analysis for courses',
+                                    paper_bgcolor:'rgba(0,0,0,0)',
+                                    plot_bgcolor:'rgba(0,0,0,0)'
+                                    };   
                             Plotly.newPlot(document.getElementById("instrgradegraph"),dict['data'], layout)
                         }
                     }

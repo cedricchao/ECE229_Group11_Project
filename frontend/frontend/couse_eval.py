@@ -4,6 +4,8 @@ import pandas as pd
 from typing import List
 import os
 from dataobj import bar,bardata
+import re
+from collections import defaultdict
 
 class course_eval():
     """
@@ -17,7 +19,29 @@ class course_eval():
         """
         assert os.path.isfile(datafilename),'file not present in the path'
         self.df = pd.read_csv(datafilename)
-
+        self.deparments = {re.match('^[A-Z]{1,5}',name)[0] for  name in self.df['course'].unique()}
+        self.profname = defaultdict(set)
+        for _, row in self.df[['instr','course']].iterrows():
+            depart = re.sub('[0-9\s]','',row['course'])
+            if row['instr'] not in self.profname[depart]:
+                self.profname[depart].add(row['instr'])
+            
+    def getprofname(self,name)->List:
+        """
+        Return the Professor name
+        Returns:
+            List: list of professor name
+        """
+        print(name)
+        return sorted(list(self.profname[name]))
+    
+    def getdeptname(self)->List:
+        """
+        Returns all the departments 
+        Returns:
+            List:  list of department name
+        """
+        return sorted(list(self.deparments))
     def get_radar_plotdetails(self,course:str)->List:
         """
         Return the Radar plot details for the given course
