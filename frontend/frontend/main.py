@@ -121,8 +121,10 @@ def get_filter():
     time = data['time'].strip()
     rec_class = data['rec_class'].strip()
     rec_instr = data['rec_instr'].strip()
+    dep = data['dep'].strip().split(",")
 
-    html_data = filter_obj.run(letter=letter, gpa=gpa, time=time, rec_class=rec_class, rec_instr=rec_instr)[['instr', 'course', 'term', 'rcmnd_class', 'rcmnd_instr', 'time', 'letter_actual', 'gpa_actual']].to_html(table_id="filter_table")
+    df = filter_obj.run(letter=letter, gpa=gpa, time=time, rec_class=rec_class, rec_instr=rec_instr, dep=dep)[['instr', 'course', 'term', 'rcmnd_class', 'rcmnd_instr', 'time', 'letter_actual', 'gpa_actual']]
+    html_data = df.reset_index(drop=True).to_html(table_id="filter_table")
 
     return FilterHtmlData(table=html_data).json()
 

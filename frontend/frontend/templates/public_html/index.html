@@ -167,6 +167,8 @@
             <input class='input' type="text" id="rec_class" name="rec_class"><br>
             <label class='input' for="fname">Ratio of recommended instructor greater than:</label><br>
             <input class='input' type="text" id="rec_instr" name="rec_instr"><br>
+            <label class='input' for="fname">Department seperated by comma:</label><br>
+            <input class='input' type="text" id="dep" name="dep"><br>
             <p></p>
                 <div class="navbar-expand-lg"> 
                     <ul class = 'navbar-nav ml-auto'>
@@ -194,6 +196,7 @@
                     "time": document.getElementById("weekly_time").value,
                     "rec_class": document.getElementById("rec_class").value,
                     "rec_instr": document.getElementById("rec_instr").value,
+                    "dep": document.getElementById("dep").value
                 }
                 let post = JSON.stringify(postObj)
          
@@ -226,6 +229,7 @@
                     document.getElementById("weekly_time").value = "";
                     document.getElementById("rec_class").value = "";
                     document.getElementById("rec_instr").value = "";
+                    document.getElementById("dep").value = "";
 
                     if (filterTable != null) filterTable.destroy();
 
