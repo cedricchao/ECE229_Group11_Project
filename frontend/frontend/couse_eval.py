@@ -49,8 +49,6 @@ class course_eval():
         Return the Radar plot details for the given course
         Args:
             course (str): course name for to be plotted
-        
-
         Returns:
             List: _description_
         """

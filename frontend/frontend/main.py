@@ -7,10 +7,12 @@ import json
 from couse_eval import course_eval
 from dataobj import radar,radardata,bar,bardata,FilterHtmlData
 from filter import *
-
+import os
 
 df_path = './data/data.csv'
-
+servicename='recommend1'
+if "Servicename" in os.environ:
+    servicename= os.getenv('Servicename')
 
 course_eval_obj = course_eval()
 filter_obj = Filter(df_path = df_path)
@@ -27,7 +29,7 @@ def hello_world():
 @app.route('/getcourse', methods=['POST','GET'])
 def getcourse():
     if request.method == 'POST':
-        url = 'http://127.0.0.1:8000/recommend'
+        url = 'http://{0}:8000/recommend'.format(servicename)
         myobj = {'inputs': request.json['body']}
         x = requests.post(url, data = json.dumps(myobj))
         dic={}
@@ -54,7 +56,7 @@ def getdepartment():
 def getgraph():
     if request.method != 'POST':
             return
-    url = 'http://127.0.0.1:8000/umap'
+    url = 'http://{0}:8000/umap'.format(servicename)
     myobj = {'inputs': request.json['body']}
     points = requests.post(url, data = json.dumps(myobj))
     points = points.json()['points']

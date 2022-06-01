@@ -1,0 +1,21 @@
+version: '2'
+  
+services:
+  recommend:
+    image: sumukhbadam/recommender 
+    container_name: 'recommender-service'
+    ports: 
+      - "8000:8000"
+    networks:
+      - webproxy
+  frontend:
+    image: frontend
+    ports: [5000]
+    networks:
+      - webproxy
+    environment:
+      - Servicename=recommend
+
+networks:
+  webproxy:
+    driver: bridge

@@ -743,7 +743,7 @@
 
         </div>
     </section>
-    
+
     <script>
         function jsFunction(value){
             document.getElementById('fnameinstrgrade').value = value
@@ -762,6 +762,10 @@
                         var dic = JSON.parse(xhr.responseText)
                         console.log(xhr.responseText)
                         var select = document.getElementById("department_name");
+                        var option = document.createElement("option");
+                        option.value = '';
+                        option.text = '';
+                        select.appendChild(option);
                         for (const val of dic['name'])
                         {
                             var option = document.createElement("option");
