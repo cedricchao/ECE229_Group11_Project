@@ -18,6 +18,10 @@
 	<link rel="stylesheet" href="assets/css/ollie.css">
     <script src='assets/js/plotly-2.12.1.min.js'></script>
 
+    <!-- jquery + datatable viewer -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
@@ -147,6 +151,100 @@
              </div>
         </div>
     </section>
+
+
+   
+    <section class="section" id="filter">
+        <div class="container">
+            <h3 class="section-title mb-4">Course Filter</h3>
+            <label class='input' for="fname">Letter grade better than:</label><br>
+            <input class='input' type="text" id="letter" name="letter"><br>
+            <label class='input' for="fname">Actual GPA better than:</label><br>
+            <input class='input' type="text" id="gpa" name="gpa"><br>
+            <label class='input' for="fname">Weekly working hour less than:</label><br>
+            <input class='input' type="text" id="weekly_time" name="weekly_time"><br>
+            <label class='input' for="fname">Ratio of recommended class greater than:</label><br>
+            <input class='input' type="text" id="rec_class" name="rec_class"><br>
+            <label class='input' for="fname">Ratio of recommended instructor greater than:</label><br>
+            <input class='input' type="text" id="rec_instr" name="rec_instr"><br>
+            <p></p>
+                <div class="navbar-expand-lg"> 
+                    <ul class = 'navbar-nav ml-auto'>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" type="button" id="clear-buttonradar" onclick="my_filter_clear()">Clear</button>
+                        </li>
+                        <li class="nav-item ml-0 ml-lg-4">
+                            <button class="nav-link btn btn-primary" id="ajax-buttonradar" onclick="my_filter()">Try it</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            <div id="radargraph" style="width:600px;height:550px;">
+            </div>
+            <table id="filter_table" name="filter_table"></table>
+            <script>
+                let filterTable = null
+            </script>
+            <script>
+                function my_filter() {
+
+                // var x = document.getElementById("radargraph");
+                // x.style.display = "block";
+                postObj = {
+                    "letter": document.getElementById("letter").value,
+                    "gpa": document.getElementById("gpa").value,
+                    "time": document.getElementById("weekly_time").value,
+                    "rec_class": document.getElementById("rec_class").value,
+                    "rec_instr": document.getElementById("rec_instr").value,
+                }
+                let post = JSON.stringify(postObj)
+         
+                const url = "get_filter"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+        
+                xhr.onload = function () {
+                        if(xhr.status === 200) {
+                            if (filterTable != null) filterTable.destroy();
+
+                            var html_table = JSON.parse(xhr.responseText).table
+                            var tbl = document.getElementById('filter_table');
+                            tbl.innerHTML = html_table;
+
+                            filterTable = new simpleDatatables.DataTable("#filter_table", {
+	                            searchable: false,
+	                            fixedHeight: true,
+                            })
+                        }
+                    }
+                }
+
+                function my_filter_clear(){
+                    document.getElementById("letter").value = "";
+                    document.getElementById("gpa").value = "";
+                    document.getElementById("weekly_time").value = "";
+                    document.getElementById("rec_class").value = "";
+                    document.getElementById("rec_instr").value = "";
+
+                    if (filterTable != null) filterTable.destroy();
+
+                    var tbl = document.getElementById('filter_table');
+                    tbl.innerHTML = "";
+
+                    
+
+                    
+
+                }
+            </script>
+        </div>
+    </section>
+
+
+
     <script>
         
         function myFunction() {
@@ -189,7 +287,7 @@
                 }
             }
         }
-        
+
     </script>
     <script>
         function myClear() {
@@ -547,8 +645,8 @@
                     }
 
         }
-
     </script>
+    
     <section class="section" id="radarinstr">
         <div class="container">
             <h3 class="section-title mb-4">Instr Radar Analysis</h3>

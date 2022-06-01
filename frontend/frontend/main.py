@@ -5,10 +5,17 @@ from flask import request
 import requests
 import json
 from couse_eval import course_eval
-from dataobj import radar,radardata,bar,bardata
+from dataobj import radar,radardata,bar,bardata,FilterHtmlData
+from filter import *
+
+
+df_path = './data/data.csv'
 
 
 course_eval_obj = course_eval()
+filter_obj = Filter(df_path = df_path)
+
+
 
 app = Flask(__name__,static_folder='templates/public_html/assets',
             template_folder='templates/public_html')
@@ -101,3 +108,22 @@ def getinstrgradegraph():
     string = request.json['body'][0]
     data=course_eval_obj.get_instr_course_info(string)
     return radardata(data=data).json()
+
+
+@app.route('/get_filter', methods=['POST','GET'])
+def get_filter():
+
+    data = request.json
+    print(data)
+
+    letter = data['letter'].strip()
+    gpa = data['gpa'].strip()
+    time = data['time'].strip()
+    rec_class = data['rec_class'].strip()
+    rec_instr = data['rec_instr'].strip()
+
+    html_data = filter_obj.run(letter=letter, gpa=gpa, time=time, rec_class=rec_class, rec_instr=rec_instr)[['instr', 'course', 'term', 'rcmnd_class', 'rcmnd_instr', 'time', 'letter_actual', 'gpa_actual']].to_html(table_id="filter_table")
+
+    return FilterHtmlData(table=html_data).json()
+
+    

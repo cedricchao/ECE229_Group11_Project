@@ -26,3 +26,6 @@ class bardata(BaseModel):
     hoverinfo:str = 'none'
     opacity: float = 0.5
     type:str = 'bar'
+
+class FilterHtmlData(BaseModel):
+    table: str

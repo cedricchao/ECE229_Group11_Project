@@ -5,7 +5,7 @@ grades = {l:i for i,l in enumerate(grades)}
 class Letter():
     
     def __init__(self, letter):
-        self.letter = letter
+        self.letter = letter.strip()
         
     def __eq__(self, other):
         assert isinstance(other, Letter)
