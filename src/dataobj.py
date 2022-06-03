@@ -17,3 +17,13 @@ class vector(BaseModel):
 
 class vectordict(BaseModel):
     points:dict #[str,vector]
+
+
+class coursereq(BaseModel):
+    Time:float
+    GPA_Actual:float
+    Rcmnd_Instr:float
+    Recommend_Course:float
+    department:List[str]
+    keyword:str
+
