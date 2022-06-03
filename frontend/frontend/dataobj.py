@@ -24,8 +24,9 @@ class bardata(BaseModel):
     name:str
     textposition:str = 'auto'
     hoverinfo:str = 'none'
-    opacity: float = 0.5
+    opacity: float = 1.0
     type:str = 'bar'
+    color:str= 'rgb(49,130,189)'
 
 class FilterHtmlData(BaseModel):
     table: str
