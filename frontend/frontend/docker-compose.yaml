@@ -9,7 +9,7 @@ services:
     networks:
       - webproxy
   frontend:
-    image: frontend
+    image: sumukhbadam/frontend
     ports: [5000]
     networks:
       - webproxy

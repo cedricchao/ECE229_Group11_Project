@@ -10,7 +10,7 @@ from filter import *
 import os
 
 df_path = './data/data.csv'
-servicename='recommend1'
+servicename='127.0.0.1'
 if "Servicename" in os.environ:
     servicename= os.getenv('Servicename')
 
@@ -76,7 +76,7 @@ def getradar():
     string = request.json['body'][0]
     data = []
     for course in string.split(","):
-        r,t = course_eval_obj.get_radar_plotdetails(course)
+        t,r = course_eval_obj.get_radar_plotdetails(course)
         if r is None:
             continue
         data.append(radar(r=r,theta=t,name=course))
@@ -111,13 +111,49 @@ def getinstrgradegraph():
     data=course_eval_obj.get_instr_course_info(string)
     return radardata(data=data).json()
 
+@app.route('/getplanner',methods=['POST'])
+def get_planner():
+    if request.method == 'POST':
+        url = 'http://{0}:8000/plan'.format(servicename)
+        data = request.json['body']
+        for course in data:
+            course['Time']=float(course['Time'])
+            course['GPA_Actual']=float(course['GPA_Actual'])
+            course['Recommend_Course']=float(course['Recommend_Course'])
+            course['Rcmnd_Instr']=float(course['Rcmnd_Instr'])
+            course['department']=course['department'].split(",")
+        x = requests.post(url, data = json.dumps(data))
+        data=[]
+        #print(x.json())
+        for i in x.json():
+            #print(i)
+            dic={}
+            course_name=[]
+            course_desp=[]
+            gpa=[]
+            time=[]
+            for coursename,values in i.items():
+                if coursename == 'cgpa':
+                    continue
+                course_name.append(coursename)
+                course_desp.append(values['keyword'])
+                time.append(round(values['Time'],2))
+                gpa.append(round(values['GPA_Actual'],2))
+            dic['data']=[course_name,gpa,time,course_desp]
+            data.append(dic)
+
+                
+        '''
+        dic={}
+        dic['data']=[list(x.json()['recommend_set'][request.json['body'][0]]['courses'].keys()),
+                    list(x.json()['recommend_set'][request.json['body'][0]]['courses'].values())]
+        '''
+        return json.dumps(data)
+       
 
 @app.route('/get_filter', methods=['POST','GET'])
 def get_filter():
-
     data = request.json
-    print(data)
-
     letter = data['letter'].strip()
     gpa = data['gpa'].strip()
     time = data['time'].strip()

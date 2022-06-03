@@ -42,13 +42,13 @@
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Recommender</a>
+                        <a class="nav-link" href="#filter">Recommender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testmonial">Course similarity</a>
+                        <a class="nav-link" href="#testmonial">Analysis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#radar">Course Eval</a>
+                        <a class="nav-link" href="#planner">Course Planner</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#UserStory">User Story</a>
@@ -157,17 +157,17 @@
     <section class="section" id="filter">
         <div class="container">
             <h3 class="section-title mb-4">Course Filter</h3>
-            <label class='input' for="fname">Letter grade better than:</label><br>
+            <label class='input' for="fname">Letter grade better than:(e.g. B+)</label><br>
             <input class='input' type="text" id="letter" name="letter"><br>
-            <label class='input' for="fname">Actual GPA better than:</label><br>
+            <label class='input' for="fname">Actual GPA better than:(e.g. 3.5)</label><br>
             <input class='input' type="text" id="gpa" name="gpa"><br>
-            <label class='input' for="fname">Weekly working hour less than:</label><br>
+            <label class='input' for="fname">Weekly working hour less than:(e.g. 20)</label><br>
             <input class='input' type="text" id="weekly_time" name="weekly_time"><br>
-            <label class='input' for="fname">Ratio of recommended class greater than:</label><br>
+            <label class='input' for="fname">Ratio of recommended class greater than:(e.g. 0.9)</label><br>
             <input class='input' type="text" id="rec_class" name="rec_class"><br>
-            <label class='input' for="fname">Ratio of recommended instructor greater than:</label><br>
+            <label class='input' for="fname">Ratio of recommended instructor greater than:(e.g. 0.8)</label><br>
             <input class='input' type="text" id="rec_instr" name="rec_instr"><br>
-            <label class='input' for="fname">Department seperated by comma:</label><br>
+            <label class='input' for="fname">Department seperated by comma:(e.g. CSE,SIO,PHYS)</label><br>
             <input class='input' type="text" id="dep" name="dep"><br>
             <p></p>
                 <div class="navbar-expand-lg"> 
@@ -271,6 +271,8 @@
                     var dict = JSON.parse(xhr.responseText)
                     var data = [{
                                 type: 'table',
+                                columnorder: [1,2],
+                                columnwidth: [50,400],
                                 header: {
                                         values: [["<b>Course</b>"], ["<b>Description</b>"]],
                                         align: "center",
@@ -296,6 +298,7 @@
             document.getElementById("fname").value = " ";
             var x = document.getElementById("table");
             x.style.display = "none";
+
         }
     </script>
     <section class="section" id="portfolio">
@@ -303,7 +306,7 @@
             <!-- <h6 class="xs-font mb-0">Culpa perferendis excepturi.</h6> -->
             <h3 class="section-title pb-4">Recommender</h3>
             
-                <label class='input' for="fname">Course name/Keywords:</label><br>
+                <label class='input' for="fname">Course name/Keywords:(e.g. CSE 203B/Convex Optimization)</label><br>
                 <input class='input' type="text" id="fname" name="fname"><br>
                 <p></p>
                 <div class="navbar-expand-lg"> 
@@ -329,7 +332,7 @@
     <section class="section" id="testmonial">
         <div class="container">
             <h3 class="section-title">Course similarity analysis</h3>
-            <label class='input' for="fname">Course name/Course code sperated by comma:</label><br>
+            <label class='input' for="fname">Course name/Course code sperated by comma:(e.g. CSE 203B,ECE 269)</label><br>
             <input class='input' type="text" id="fnamegraph" name="fnamegraph"><br>
             <p></p>
                 <div class="navbar-expand-lg"> 
@@ -446,7 +449,7 @@
     <section class="section" id="radar">
         <div class="container">
             <h3 class="section-title mb-4">Radar Analysis</h3>
-            <label class='input' for="fname">Course name/Course code sperated by comma:</label><br>
+            <label class='input' for="fname">Course name/Course code sperated by comma:(e.g. CSE 203B,ECE 269)</label><br>
             <input class='input' type="text" id="fnameradar" name="fnameradar"><br>
             <p></p>
                 <div class="navbar-expand-lg"> 
@@ -526,7 +529,7 @@
     <section class="section" id="GPA">
         <div class="container">
             <h3 class="section-title mb-4">Course GPA Analysis</h3>
-            <label class='input' for="fname">Course name/Course code:</label><br>
+            <label class='input' for="fname">Course name/Course code:(e.g. CSE 203B,ECE 269)</label><br>
             <input class='input' type="text" id="fnameGPA" name="fnameGPA"><br>
             <p></p>
                 <div class="navbar-expand-lg"> 
@@ -648,7 +651,11 @@
 
         }
     </script>
-    
+    <section>
+        <div class="container">
+
+        </div>
+    </section>
     <section class="section" id="radarinstr">
         <div class="container">
             <h3 class="section-title mb-4">Instr Radar Analysis</h3>
@@ -738,12 +745,6 @@
         </div>
     </section>
 
-    <section>
-        <div class="container">
-
-        </div>
-    </section>
-
     <script>
         function jsFunction(value){
             document.getElementById('fnameinstrgrade').value = value
@@ -809,7 +810,11 @@
 
         }
     </script>
-
+    <section>
+        <div class="container">
+            
+        </div>
+    </section>
     <section class="section" id="instrgrade">
         <div class="container">
             <h3 class="section-title mb-4">Instr grade Analysis</h3>
@@ -882,7 +887,250 @@
             </script>
         </div>
     </section>
+    <section class="section">
+        <div class="container">
+            <div class="navbar-expand-lg"> 
+                <ul class = 'navbar-nav ml-auto'>
+                    <!-- <li class="nav-item ml-0 ml-lg-4">
+                        <button class="nav-link btn btn-primary" type="button" id="clear-planner" onclick="myplannerclear()">Clear</button>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <button class="nav-link btn btn-primary" id="ajax-planner" onclick="myplanner()">Try it</button>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        var dict;
+        function myplannerclear() {
+                document.getElementById("course1_time").value = " ";
+                document.getElementById("course1_gpa").value = " ";
+                document.getElementById("course1_dep").value = " ";
+                document.getElementById("course1_key").value = " ";
 
+                document.getElementById("course2_time").value = " ";
+                document.getElementById("course2_gpa").value = " ";
+                document.getElementById("course2_dep").value = " ";
+                document.getElementById("course2_key").value = " ";
+
+                document.getElementById("course3_time").value = " ";
+                document.getElementById("course3_gpa").value = " ";
+                document.getElementById("course3_dep").value = " ";
+                document.getElementById("course3_key").value = " ";
+                var x = document.getElementById("table1");
+                x.style.display = "none";
+                var x = document.getElementById("tabledrop");
+                x.style.display = "none";
+            }
+        function myplanner(){
+
+            postObj ={body:[{
+                    "Time": document.getElementById("course1_time").value,
+                    "GPA_Actual": document.getElementById("course1_gpa").value,
+                    "keyword": document.getElementById("course1_key").value,
+                    "Recommend_Course": 0.5,
+                    "Rcmnd_Instr": 0.5,
+                    "department": document.getElementById("course1_dep").value
+                },
+                {
+                    "Time": document.getElementById("course2_time").value,
+                    "GPA_Actual": document.getElementById("course2_gpa").value,
+                    "keyword": document.getElementById("course2_key").value,
+                    "Recommend_Course": 0.5,
+                    "Rcmnd_Instr": 0.5,
+                    "department": document.getElementById("course2_dep").value
+                },
+                {
+                    "Time": document.getElementById("course3_time").value,
+                    "GPA_Actual": document.getElementById("course3_gpa").value,
+                    "keyword": document.getElementById("course3_key").value,
+                    "Recommend_Course": 0.5,
+                    "Rcmnd_Instr": 0.5,
+                    "department": document.getElementById("course3_dep").value
+                }
+                ]}
+                let post = JSON.stringify(postObj)
+         
+                const url = "getplanner"
+                let xhr = new XMLHttpRequest()
+        
+                xhr.open('POST', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send(post);
+                xhr.onload = function () {
+                if(xhr.status === 200) {
+                    // document.getElementById("demo").innerHTML = xhr.responseText
+                    dict = JSON.parse(xhr.responseText)
+                    var x = document.getElementById("tabledrop");
+                    x.style.display = "block";
+                    var select = document.getElementById("tabledrop");
+                    document.getElementById('tabledrop').options.length = 0;
+                    var option = document.createElement("option");
+                    option.value = '';
+                    option.text = '';
+                    select.appendChild(option);
+                    for (const val of Array.from({length: dict.length}, (item, index) => index))
+                    {
+                        var option = document.createElement("option");
+                        option.value = val;
+                        option.text = 'option:'+val;
+                        select.appendChild(option);
+                    }
+                }
+            }
+        
+
+        }
+        function tableDrop(value){
+            
+            var x = document.getElementById("table1");
+                    x.style.display = "block";
+            
+            var data = [{
+                        type: 'table',
+                        columnorder: [1,2,3,4],
+                        columnwidth: [50,50,50,400],
+                        header: {
+                                values: [["<b>Course</b>"],['<b>GPA</b>'],['<b>Time</b>'],["<b>Description</b>"]],
+                                align: "center",
+                                line: {width: 1, color: 'black'},
+                                fill: {color: "grey"},
+                                font: {family: "Arial", size: 15, color: "white"}
+                        },
+                        cells: {
+                        values: dict[value]['data'],
+                        align: "center",
+                        line: {color: "black", width: 1},
+                        font: {family: "Arial", size: 15, color: ["black"]}
+                        }
+                        }]
+            console.log(value,dict[value]['data'])
+            Plotly.newPlot('table1', data);
+                    }
+            
+    </script>
+    <section class="section"  id="planner">
+        <div class="container">
+            <h3 class="section-title mb-4">Course Planner</h3>
+            <h5 class="section-title mb-4">Course A</h5>
+            <div class="navbar-expand-lg"> 
+                <ul class = 'navbar-nav ml-auto'>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname" style="text-align:right; padding-right:3px">Time (hr)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course1_time" name="course1_time" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">GPA (e.g. 4)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course1_gpa" name="course1_gpa" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Department (e.g. CSE)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course1_dep" name="course1_dep" size="10"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Keywords</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course1_key" name="course1_key" size="20"><br>
+                    </li>
+                </ul>
+            </div>
+
+            <h5 class="section-title mb-4">Course B</h5>
+            <div class="navbar-expand-lg"> 
+                <ul class = 'navbar-nav ml-auto'>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname" style="text-align:right; padding-right:3px">Time (hr)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course2_time" name="course2_time" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">GPA (e.g. 4)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course2_gpa" name="course2_gpa" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Department (e.g. CSE)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course2_dep" name="course2_dep" size="10"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Keywords</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course2_key" name="course2_key" size="20"><br>
+                    </li>
+                </ul>
+            </div>
+            
+            <h5 class="section-title mb-4">Course C</h5>
+            <div class="navbar-expand-lg"> 
+                <ul class = 'navbar-nav ml-auto'>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname" style="text-align:right; padding-right:3px">Time (hr)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course3_time" name="course3_time" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">GPA (e.g. 4)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course3_gpa" name="course3_gpa" size="5"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Department (e.g. CSE)</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course3_dep" name="course3_dep" size="10"><br>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <label class='input' for="fname">Keywords</label>
+                    </li>
+                    <li class="nav-item ml-0 ml-lg-4">
+                        <input class='input' type="text" id="course3_key" name="course3_key" size="20"><br>
+                    </li>
+                </ul>
+            </div>
+        
+        <p></p>
+        <div class="navbar-expand-lg"> 
+            <ul class = 'navbar-nav ml-auto'>
+                <li class="nav-item ml-0 ml-lg-4">
+                    <button class="nav-link btn btn-primary" type="button" id="clear-planner" onclick="myplannerclear()">Clear</button>
+                </li>
+                <li class="nav-item ml-0 ml-lg-4">
+                    <button class="nav-link btn btn-primary" id="ajax-planner" onclick="myplanner()">Try it</button>
+                </li>
+                <li class="nav-item ml-0 ml-lg-4">
+                    <select name="tabledrop" id="tabledrop"  onchange="tableDrop(this.value);"><br>
+                    </select><br>
+                </li>
+            </ul>
+        </div>
+        <!-- <select name="tabledrop" id="tabledrop"  onchange="tableDrop(this.value);"><br>
+        </select><br> -->
+        <div id="table1" style="width:1000px;height:800px;"></div>
+        <script>
+            var x = document.getElementById("table1");
+            x.style.display = "none";
+            var x = document.getElementById("tabledrop");
+            x.style.display = "none";
+
+        </script>
+    </div>
+    </section>
+    
     <section class="section bg-overlay">
     
         
@@ -909,14 +1157,6 @@
                         In summary, his needs are finishing major/GE requirements, improving his GPA, and discovering potential interests.
                         For the first need, the product will have the information on the requirements of the data science major and his progress so that the product will not recommend courses that he has already taken. For the second need, the product will first ask him to input his current GPA and then list the average hours dedicated and previous GPA of the recommended courses so that he can decide for himself. For the last need, the product will list classes that others spoke highly of and also have nice GPAs so that he can keep up with both his interests and GPA improvement plan.
                     </h6>
-
-                    <!-- <a href="#" class="badge badge-info">Graphic Design</a> -->
-
-                    <!-- <h6 class="blog-footer">
-                        <a href="javascript:void(0)"><i class="ti-user"></i> Admin </a> |
-                        <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 213 </a> |
-                        <a href="javascript:void(0)"><i class="ti-comments"></i> 123</a>
-                    </h6> -->
                 </div>
             </div>
         </div>

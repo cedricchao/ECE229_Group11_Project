@@ -63,7 +63,7 @@ class course_eval():
         time = sum(selected_course['evals']*selected_course['time'])/total_eval/10*4
         gpa_expected = sum(selected_course['evals']*selected_course['gpa_expected'])/total_eval
         gpa_actual = sum(selected_course['evals']*selected_course['gpa_actual'])/total_eval
-        return ([recommend_course,rcmnd_instr,time,gpa_expected,gpa_actual],theta)
+        return (theta,[recommend_course,rcmnd_instr,time,gpa_expected,gpa_actual])
 
     def get_GPA_details(self,course:str)->List:
         """
@@ -99,8 +99,8 @@ class course_eval():
            'GPA Expected', 'GPA Actual']
         selected_instr = self.df[self.df['instr']==instr] 
         total_eval = sum(selected_instr['evals'])
-        rcmnd_instr = sum(selected_instr['evals']*selected_instr['rcmnd_instr'])/total_eval*4
-        time = sum(selected_instr['evals']*selected_instr['time'])/total_eval/10*4
+        rcmnd_instr = (sum(selected_instr['evals']*selected_instr['rcmnd_instr'])/total_eval)*4
+        time = (sum(selected_instr['evals']*selected_instr['time'])/total_eval/10)*4
         gpa_expected = sum(selected_instr['evals']*selected_instr['gpa_expected'])/total_eval
         gpa_actual = sum(selected_instr['evals']*selected_instr['gpa_actual'])/total_eval
         return ([rcmnd_instr,time,gpa_expected,gpa_actual],theta)
