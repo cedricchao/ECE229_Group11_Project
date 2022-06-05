@@ -27,7 +27,7 @@ class Letter():
         
         return grades[self.letter] <= grades[other.letter]
     
-    def __lt__(self, other):
+    def __ge__(self, other):
         assert isinstance(other, Letter)
         
         return grades[self.letter] >= grades[other.letter]

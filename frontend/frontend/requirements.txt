@@ -1,0 +1,5 @@
+flask
+pydantic
+requests
+numpy
+pandas
