@@ -18,8 +18,9 @@ class Planner():
                 coursemap_back_file:str='data/coursemap_back.pk',
                 coursemap_desp_file:str='data/coursemap_despk.pk',
                 embedding_file:str='./data/sentence_embedding.npy') -> None:
-        """_summary_
-
+        """
+        Help to plan the course for the quater given the three course key and additional inputs 
+    
         Args:
             course_map_file (str, optional): _description_. Defaults to 'data/coursemap.pk'.
             coursemap_back_file (str, optional): _description_. Defaults to 'data/coursemap_back.pk'.
@@ -41,16 +42,17 @@ class Planner():
         self.info_key = set(self.df['course'])
         self.course_data = course_eval()
 
-    def get_couse_list(self,department,cousre_key,num_of_course=10):
-        """_summary_
-
+    def get_couse_list(self,department:List[str],cousre_key:str,num_of_course:int=10) -> List:
+        """
+        given a string it gives similar courses from selected department and 
+        returned list of courses has lent num of course
         Args:
-            department (_type_): _description_
-            cousre_key (_type_): _description_
-            num_of_course (int, optional): _description_. Defaults to 10.
+            department (List[str]): List of department names used to recommend the course from 
+            cousre_key (str): key of the course which the resultant course should be similar to 
+            num_of_course (int, optional): length of courses that is similar to the key. Defaults to 10.
 
         Returns:
-            _type_: _description_
+            List: returns the list of courses that match the course key
         """
         course_mini_map={}
         for i in self.info_key:
@@ -64,11 +66,11 @@ class Planner():
         D,I = fai.search(self.model.encode(cousre_key,normalize_embeddings=True).reshape(1,-1),num_of_course)
         return [course_mini_map_back[i] for i in I[0]]
     
-    def get_recommendation(self,courses:List[coursereq])->List[Dict[str,coursereq]]:
-        """_summary_
-
+    def get_recommendation(self,courses:List[coursereq]) -> List[Dict[str,coursereq]]:
+        """
+        Return the list of possible combination of courses
         Args:
-            courses (_type_): _description_
+            courses (_type_): List of Courses with requiements for each courses
         """
         list_a = self.get_couse_list(courses[0].department,courses[0].keyword,5)
         list_b = self.get_couse_list(courses[1].department,courses[1].keyword,5)
@@ -109,6 +111,7 @@ class Planner():
             remommend['cgpa']=cgpa/3
             output.append(remommend)
         return output
+        
 if __name__ == '__main__':
     courses=[
     coursereq(GPA_Actual=4,Time=(10/10)*4,Rcmnd_Instr=4,Recommend_Course=3.6,department=['ECE','CSE'],keyword='Digital signal Processing'),
