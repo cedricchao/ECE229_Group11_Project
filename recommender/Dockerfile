@@ -6,5 +6,6 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . /app
+ENV PYTHONPATH ..
+CMD ["uvicorn","recommender.asgi:app","--host","0.0.0.0"] 
 
-CMD ["uvicorn","main:app" ,"--app-dir", "src","--host","0.0.0.0"]
