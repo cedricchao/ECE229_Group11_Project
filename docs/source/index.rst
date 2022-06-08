@@ -7,10 +7,30 @@ Welcome to UCSD Course Recommender's documentation!
 ===================================================
 
 Wecome to the complete beginner's guide to UCSD Course recommender. Potential users are UCSD undergraduate and graduate students:
+Check out the :doc:`usage` section for further information, including how to
+:ref:`install <installation>` the project.
+
+How to use docker
+------------------------
+Run docker-compose up -t test
+this will run two docker containers
+
+User guidance
+===============
+Website link: http://18.237.185.12:49155/
+
+Course recommender using filter:
+
+.. note::
+    This project is under active development
+
+Contents
+--------
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+
+   code_samples
+   api
 
 
 
