@@ -7,7 +7,6 @@ Recommender folder house the code and test case for the recommendation system.<b
 Frontend folder house the code and test case for the website to host service.<br>
 Both the services are contanierized and can be easily run by the docker-compose<br>
 Instruction to run docker-compose:<br>
-docker-compose file is part of frontend folder.<br>
 
 Run docker-compose up -t test <br>
 this will run two docker containers<br>
