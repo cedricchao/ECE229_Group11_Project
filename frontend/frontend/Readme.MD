@@ -6,6 +6,7 @@ couse_eval.py: This file has the class used to get details of the undergraduate 
 dataobj.py: We use pydantic for data modeling and the data models are defined here.<br>
 filter.py: This file has functions used to filter the courses based on inputs.<br>
 Letter.py: This file has mapping from the grade to points<br>
+test: This folder has the test case for python files<br>
 
 The frontend and backend is connected by rest api .<br>
 Flask loads the static file and the dynamic content are loaded using the ajax method.<br>
