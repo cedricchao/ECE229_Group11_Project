@@ -3,7 +3,7 @@ from course_eval import course_eval
 import numpy as np
 import pickle as pk
 from sentence_transformers import SentenceTransformer
-# import faiss
+import faiss
 import scipy
 import pandas as pd
 from dataobj import coursereq, recommend
