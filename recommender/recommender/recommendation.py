@@ -1,9 +1,9 @@
 import numpy as np
 import os
 import pickle as pk
-import faiss
-from .Embedding_extraction import get_embedding,get_model
-from .dataobj import recommend,obj,vectordict,vector
+# import faiss
+from Embedding_extraction import get_embedding,get_model
+from dataobj import recommend,obj,vectordict,vector
 
 class courserecommender():
     """
@@ -18,13 +18,19 @@ class courserecommender():
                 umap_embedding_file:str='./data/umap_embedding.npy') -> None:
         """
         Reads the sentence embedding and loads the data for recommendation.
-        Args:
-            embedding_file (str, optional): file name with sentence embedding. Defaults to './data/sentence_embedding.npy'.
-            embedding_size (int, optional): sentence embedding vector dimension. Defaults to 384.
-            course_map_file (str, optional): pickle file with course map. Defaults to '.data/coursemap.pk'.
-            coursemap_back_file (str, optional): pickle file with reverse course map . Defaults to './data/coursemap_back.pk'.
-            coursemap_desp_file (str, optional): pickle file with course description .Defaults to  './data/coursemap_despk.pk'.
-            umap_embedding_file (str,optional): Umap embedding with for course .Defaults to  './data/umap_embedding.npy'.
+        
+        :param embedding_file: file name with sentence embedding. Defaults to './data/sentence_embedding.npy'.
+        :type embedding_file: str
+        :param embedding_size: sentence embedding vector dimension. Defaults to 384.
+        :type embedding_size: int
+        :param course_map_file: pickle file with course map. Defaults to '.data/coursemap.pk'.
+        :type course_map_file: str
+        :param coursemap_back_file: pickle file with reverse course map . Defaults to './data/coursemap_back.pk'.
+        :type coursemap_back_file: str
+        :param coursemap_desp_file: pickle file with course description .Defaults to  './data/coursemap_despk.pk'.
+        :type coursemap_desp_file: str
+        :param umap_embedding_file: Umap embedding with for course .Defaults to  './data/umap_embedding.npy'.
+        :type umap_embedding_file: str
         """
         assert os.path.isfile(embedding_file) and os.path.isfile(course_map_file) and os.path.isfile(coursemap_back_file),'File are not present as mentioned'
         assert embedding_size>0,'embedding dimension vector should be greater than 0' 
@@ -45,12 +51,12 @@ class courserecommender():
     def get_recommendation(self,input_string:list,number_of_recommend:int)->obj:
         """
         Given the list of the string it provides the dict of recommended courses and description
-        Args:
-            input_string (list): list of string they can be course number or string of topics
-            number_of_recommend (int): number of similar recommmended courses per string
-
-        Returns:
-            dict: it return the dict of string and for each string its a dict with course and its description
+        
+        :param input_string: list of string they can be course number or string of topics
+        :type input_string: List
+        :param number_of_recommend: number of similar recommmended courses per string
+        :type number_of_recommend: int
+        :return: dict of string and for each string its a dict with course and its description
         """
         output={}
         for string  in input_string:
@@ -66,13 +72,12 @@ class courserecommender():
         return obj(recommend_set=output)
 
     def get_umap(self,input_string:list)->vectordict:
-        """_summary_
-        return the 2d vector position of the embedding of the course for visulization
-        Args:
-            input_string (list): list of course name
-
-        Returns:
-            vectordict: dict of the course and unit vector values for course
+        """
+        Return the 2D vector position of the embedding of the course for visulization
+        
+        :param input_string: list of course name
+        :type input_string: List
+        :return: dict of the course and unit vector values for course
         """
         output={}
         print(input_string)

@@ -6,18 +6,19 @@
 Welcome to UCSD Course Recommender's documentation!
 ===================================================
 
-Wecome to the complete beginner's guide to UCSD Course recommender. Potential users are UCSD undergraduate and graduate students:
-Check out the :doc:`usage` section for further information, including how to
-:ref:`install <installation>` the project.
+This is a project for ECE229 course work of Group 11
+We have built a recommendation system which helps student in recommending course for their quarter.
+Whole project is split into two mini folder recommendation system and frontend
+Each mini system is isolated and communicate using http
+Recommender folder house the code and test case for the recommendation system.
+Frontend folder house the code and test case for the website to host service.
+Both the services are contanierized and can be easily run by the docker-compose
+Instruction to run docker-compose:
 
-How to use docker
-------------------------
 Run docker-compose up -t test
 this will run two docker containers
-
-User guidance
-===============
-Website link: http://18.237.185.12:49155/
+Website IP and port=5000 can be used to open the link from the browser
+ex: 172.10.0.2:5000/ -> will open the website
 
 Course recommender using filter:
 
@@ -29,14 +30,5 @@ Contents
 
 .. toctree::
 
-   code_samples
-   api
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   frontend_readme
+   recommender_readme

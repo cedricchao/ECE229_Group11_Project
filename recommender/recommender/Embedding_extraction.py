@@ -7,15 +7,14 @@ import os
 
 
 def extract_embedding(dataframe:pd.DataFrame,modelname:str='paraphrase-MiniLM-L6-v2',datadump:str='data')->None:
-    """_summary_
-    Function extract the embedding of the course description from the pandas dataframe.
+    """
+    Extracts the embedding of the course description from the pandas dataframe.
     Sentence transformer is used to get the embedding of the course 
 
-    Args:
-        dataframe (pd.DataFrame): pandas dataframe with course name and course description
-        modelname (str, optional): Any model with capability of generating sentence 
-        info listed in the sentence transfomer lib. 
-        Defaults to 'paraphrase-MiniLM-L6-v2'.
+    :param dataframe: pandas dataframe with course name and course description
+    :type dataframe: pd.DataFrame
+    :param modelname: Any model with capability of generating sentence info listed in the sentence transfomer lib. Defaults to 'paraphrase-MiniLM-L6-v2'.
+    :type modelname: str
     """
     model = SentenceTransformer(modelname)
     sentence_embedding = []
@@ -54,13 +53,12 @@ def extract_embedding(dataframe:pd.DataFrame,modelname:str='paraphrase-MiniLM-L6
 def get_embedding(input_string:str,model:SentenceTransformer)->np.array:
     """
     Generates embedding using the model 
-    Args:
-        input_string (str): input string which is used for extraction of embedding
-        model (SentenceTransformer): model used for sentence embedding extraction
-                                    model should have encode function
-
-    Returns:
-        np.array: embedding of the sentence 
+    
+    :param input_string: input string which is used for extraction of embedding
+    :type input_string: str
+    :param model: model used for sentence embedding extraction model should have encode function
+    :type model: SentenceTransformer
+    :return: embedding of the sentence(np.ndarray)
     """
     return model.encode(input_string,normalize_embeddings=True)
 
@@ -68,21 +66,20 @@ def get_model(modelname:str='paraphrase-MiniLM-L6-v2')->SentenceTransformer:
     """
     create obj of the sentence transformer for embedding extraction
 
-    Args:
-        modelname (str, optional): model name. Defaults to 'paraphrase-MiniLM-L6-v2'.
-
-    Returns:
-        SentenceTransformer: model of instance sentence transformer
+    :param modelname: model name - Defaults to 'paraphrase-MiniLM-L6-v2'.
+    :type modelname: str
+    :return: model of instance sentence transformer
     """
     return SentenceTransformer(modelname)
 
 def get_umap_feature(sentence_embedding_file:str='data/sentence_embedding.npy',dumpfilename:str='data/umap_embedding.npy')->None:
     """
-    used to dump the umap embedding from the sentence embedding to plot the similarity
+    Dump the umap embedding from the sentence embedding to plot the similarity
 
-    Args:
-        sentence_embedding_file (str, optional): File name for sentence embedding. Defaults to 'data/sentence_embedding.npy'.
-        dumpfilename (str, optional): name of the file to dump the umap features. Defaults to 'data/umap_embedding.npy'.
+    :param sentence_embedding_file: File name for sentence embedding. Defaults to 'data/sentence_embedding.npy'.
+    :type sentence_embedding_file: str 
+    :param dumpfilename: name of the file to dump the umap features. Defaults to 'data/umap_embedding.npy'.
+    :type dumpfilename: str
     """
     sentence_embedding_np = np.load(sentence_embedding_file)
     import umap

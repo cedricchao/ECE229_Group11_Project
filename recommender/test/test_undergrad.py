@@ -5,7 +5,7 @@ from recommender.dataobj import coursereq
 
 def test_course_list():
     """
-    test if the recommendation for a key is from the department it is provided only
+    test if the recommendation for a key is from the input department only
     """
     plan = Planner()
     out = plan.get_couse_list(['ECE'],'signal')
@@ -14,7 +14,7 @@ def test_course_list():
 
 def test_planner():
     """
-    test the planner
+    Test the planner
     """
     courses=[
     coursereq(GPA_Actual=4,Time=(10/10)*4,Rcmnd_Instr=4,Recommend_Course=3.6,department=['ECE','CSE'],keyword='Digital signal Processing'),

@@ -12,8 +12,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\docs\source"))
-
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\frontend\frontend"))
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\frontend"))
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\frontend\frontend\test"))
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\recommender\recommender"))
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\recommender\test"))
+sys.path.insert(0, os.path.abspath(r"C:\Users\Debalina Chowdhury\ECE229_Group11_Project\recommender"))
 # -- Project information -----------------------------------------------------
 
 project = 'UCSD Course Recommender'
