@@ -48,7 +48,7 @@ class course_eval():
         """
         Return the Radar plot details for the given course
         Args:
-            course (str): course name for to be plotted
+            course (str): course name for which radar plot is shown
         Returns:
             List: _description_
         """
@@ -69,7 +69,7 @@ class course_eval():
         """
         Return Bar plot details for the given course
         Args:
-            course (str): course name for to be plotted
+            course (str): course name for which bar plot is shown
         
 
         Returns:
@@ -85,9 +85,9 @@ class course_eval():
 
     def get_instr_details(self,instr:str)->List:
         """
-        Return Bar plot details for the given course
+        Return Radar plot details for the given course
         Args:
-            course (str): course name for to be plotted
+            course (str): course name for which radar plot is shown
         
 
         Returns:
@@ -106,6 +106,15 @@ class course_eval():
         return ([rcmnd_instr,time,gpa_expected,gpa_actual],theta)
     
     def get_instr_course_info(self,instr:str)->List:
+        """
+        Return Bar plot details for the selected instructor
+        Args:
+            instr (str): instructor name for which bar plot is shown
+            
+            
+       Returns:
+            List: _description_
+       """
         grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F']
         grades = reversed(grades)
         grades = {l:i for i,l in enumerate(grades)}
