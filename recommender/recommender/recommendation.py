@@ -1,7 +1,7 @@
 import numpy as np
 import os
 import pickle as pk
-import faiss
+# import faiss
 from Embedding_extraction import get_embedding,get_model
 from dataobj import recommend,obj,vectordict,vector
 

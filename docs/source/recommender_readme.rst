@@ -8,29 +8,29 @@ Data Preparation
 ----------------------------
 
 Embedding extraction is used to extract the embedding and store them in the numpy file.
-Umap embedding is used to plot the course similarity on 2D is also generated and stored in numpy file.
-Along with this mapping between the course name and embedding index
+
+**Data folder** has the data extracted and stored using embedding extraction file.
+Umap embedding is used to plot the course similarity on 2D is also generated and stored in numpy file
+along with this mapping between the course name and embedding index.
 
 For nearest neighbour algorithm, we use Faiss library from facebook which is tested on 1B search points and it's fast.
 
-Data
-----------------------
-
-This folder has the data extracted and stored using embedding extraction file.
+requirment.txt comprises all python libraries used in the project.
 
 
-requirment.txt has all libraries used.
+Docker
+------------------------
 
 The Docker file has the instruction to containerize the application.
 Docker image is already in docker hub and can be pulled by
 docker pull sumukhbadam/recommender:latest
 
-To run without Docker
---------------------------
+**To run without Docker**
+
 pip install -r requirments.txt
 
-To run the uvicorn server
------------------------------
+**To run the uvicorn server**
+
 uvicorn recommender.asgi:app --host 0.0.0.0
 
 Recommender folder

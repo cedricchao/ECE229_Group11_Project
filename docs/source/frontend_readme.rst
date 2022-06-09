@@ -3,6 +3,10 @@ Frontend
 
 We are using flask api to host the website.
 The frontend and backend are connected by rest api.
+
+Flask and docker 
+---------------------
+
 Flask loads the static file and the dynamic content are loaded using the ajax method.
 For ploting the graph on the webpage, we use plotly js and ajax to get the data from dataend server.
 
@@ -14,6 +18,9 @@ Below step run provides the IP of the flask you can connect to on your local mac
 
 docker build . -t tagname
 docker run -it -p 5000:5000 tagname
+
+Frontend components
+--------------------------------
 
 **templates**: This folder has the static webpage elements required for flask
 
@@ -39,6 +46,9 @@ docker run -it -p 5000:5000 tagname
 	:members:
 
 	.. automethod:: __init__
+
+Test Folder
+----------------------
 
 **test**: This folder has the test case for python files
 

@@ -49,7 +49,8 @@ class course_eval():
         Return the Radar plot details for the given course
         
         :param course: course name for which radar plot is shown
-        :return: _description_
+        :type course: str
+        :return: List of parameters for radar plot
         """
         theta=['Recommend_Course','Rcmnd_Instr','Time',
            'GPA_Expected', 'GPA_Actual']
