@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend &mdash; UCSD Course Recommender 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Recommender System" href="recommender_readme.html" />
+    <link rel="prev" title="Welcome to UCSD Course Recommender’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> UCSD Course Recommender
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frontend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#flask-and-docker">Flask and docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frontend-components">Frontend components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-folder">Test Folder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recommender_readme.html">Recommender System</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">UCSD Course Recommender</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Frontend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/frontend_readme.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="frontend">
+<h1>Frontend<a class="headerlink" href="#frontend" title="Permalink to this heading"></a></h1>
+<p>We are using flask api to host the website.
+The frontend and backend are connected by rest api.</p>
+<section id="flask-and-docker">
+<h2>Flask and docker<a class="headerlink" href="#flask-and-docker" title="Permalink to this heading"></a></h2>
+<p>Flask loads the static file and the dynamic content are loaded using the ajax method.
+For ploting the graph on the webpage, we use plotly js and ajax to get the data from dataend server.</p>
+<p>This code is containerized and it can be directly accessed using docker:</p>
+<p>docker run -it -p 5000:5000 sumukhbadam/frontend</p>
+<p>Below step run provides the IP of the flask you can connect to on your local machine:</p>
+<p>docker build . -t tagname
+docker run -it -p 5000:5000 tagname</p>
+</section>
+<section id="frontend-components">
+<h2>Frontend components<a class="headerlink" href="#frontend-components" title="Permalink to this heading"></a></h2>
+<p><strong>templates</strong>: This folder has the static webpage elements required for flask</p>
+<p><strong>data</strong>: This folder houses the data used by the webpage</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="couse_eval.course_eval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">couse_eval.</span></span><span class="sig-name descname"><span class="pre">course_eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datafilename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/data.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#couse_eval.course_eval" title="Permalink to this definition"></a></dt>
+<dd><p>Course eval is used to retrieve the course evaluation data</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datafilename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/data.csv'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#couse_eval.course_eval.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialze the obj with the dataframe class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>datafilename</strong> (<em>str</em>) – path for the data. Defaults to ‘data/data.csv’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.get_GPA_details">
+<span class="sig-name descname"><span class="pre">get_GPA_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.get_GPA_details" title="Permalink to this definition"></a></dt>
+<dd><p>Return Bar plot details for the given course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>course</strong> (<em>str</em><em> or </em><em>None</em>) – course name for which bar plot is shown</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List: __description__</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.get_instr_course_info">
+<span class="sig-name descname"><span class="pre">get_instr_course_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.get_instr_course_info" title="Permalink to this definition"></a></dt>
+<dd><p>Return Bar plot details for the selected instructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instr</strong> (<em>str</em><em> or </em><em>None</em>) – instructor name for which bar plot is shown</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.get_instr_details">
+<span class="sig-name descname"><span class="pre">get_instr_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.get_instr_details" title="Permalink to this definition"></a></dt>
+<dd><p>Return Radar plot details for the given course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>course</strong> (<em>str</em><em> or </em><em>None</em>) – course name for which radar plot is shown</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List: __description__</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.get_radar_plotdetails">
+<span class="sig-name descname"><span class="pre">get_radar_plotdetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.get_radar_plotdetails" title="Permalink to this definition"></a></dt>
+<dd><p>Return the Radar plot details for the given course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>course</strong> (<em>str</em><em> or </em><em>None</em>) – course name for which radar plot is shown</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.getdeptname">
+<span class="sig-name descname"><span class="pre">getdeptname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.getdeptname" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all the departments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List:  list of department name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="couse_eval.course_eval.getprofname">
+<span class="sig-name descname"><span class="pre">getprofname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">department</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#couse_eval.course_eval.getprofname" title="Permalink to this definition"></a></dt>
+<dd><p>Return the list of  prof names from the department</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>department</strong> (<em>str</em>) – Name of the department</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List: prof names</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p><strong>dataobj.py</strong>: We use pydantic for data modeling and the data models are defined here.</p>
+<p><strong>filter.py</strong>: This file has functions used to filter the courses based on inputs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="filter.Filter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">filter.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.Filter" title="Permalink to this definition"></a></dt>
+<dd><p>Filter class is used to retrieve recommended courses based on input filters</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="filter.Filter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.Filter.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize Filter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df_path</strong> (<em>str</em>) – directory path of dataframe of all UCSD courses</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="filter.Filter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">letter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rec_instr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.Filter.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the filter and provide recommended courses along with descriptions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>letter</strong> – letter grade e.g. A-, B+, A+</p></li>
+<li><p><strong>gpa</strong> (<em>float</em>) – 3.2, 3.8</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – weekly study hours e.g. 10, 20</p></li>
+<li><p><strong>rec_class</strong> (<em>float</em>) – probability for class to be recommended in [0, 1]</p></li>
+<li><p><strong>rec_instr</strong> (<em>float</em>) – probability for instructor to be recommended in [0, 1]</p></li>
+<li><p><strong>dep</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – list of department codes e.g. CSE, ECE, PHIL</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe of recommended courses</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p><strong>Letter.py</strong>: This file has mapping from the grade to points</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Letter.Letter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Letter.</span></span><span class="sig-name descname"><span class="pre">Letter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">letter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Letter.Letter" title="Permalink to this definition"></a></dt>
+<dd><p>Letter class stores comparison among various letter grades</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Letter.Letter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">letter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Letter.Letter.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize Letter class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>letter</strong> (<em>str</em>) – letter grade e.g. A-, B+, A+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="test-folder">
+<h2>Test Folder<a class="headerlink" href="#test-folder" title="Permalink to this heading"></a></h2>
+<p><strong>test</strong>: This folder has the test case for python files</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="test_course_eval.test_getprofname">
+<span class="sig-prename descclassname"><span class="pre">test_course_eval.</span></span><span class="sig-name descname"><span class="pre">test_getprofname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datafilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./data/data.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_course_eval.test_getprofname" title="Permalink to this definition"></a></dt>
+<dd><p>Test the get profname for the given department</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>datafilename</strong> (<em>str</em>) – filename of the data. Defaults to ‘./data/data.csv’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_course_eval.test_getdeptname">
+<span class="sig-prename descclassname"><span class="pre">test_course_eval.</span></span><span class="sig-name descname"><span class="pre">test_getdeptname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datafilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./data/data.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_course_eval.test_getdeptname" title="Permalink to this definition"></a></dt>
+<dd><p>Test the list of departments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>datafilename</strong> (<em>str</em>) – filename of the data. Defaults to ‘./data/data.csv’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test_course_eval.test_radar_plot">
+<span class="sig-prename descclassname"><span class="pre">test_course_eval.</span></span><span class="sig-name descname"><span class="pre">test_radar_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_course_eval.test_radar_plot" title="Permalink to this definition"></a></dt>
+<dd><p>Test if the radar plot return the course details</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to UCSD Course Recommender’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="recommender_readme.html" class="btn btn-neutral float-right" title="Recommender System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ECE 229 Project Group 11.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

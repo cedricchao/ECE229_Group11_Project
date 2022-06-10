@@ -1,11 +1,9 @@
 import os
-from recommender.recommendation import courserecommender
-from recommender.dataobj import vector
 import json
 
 def test_umap():
     """
-    test the course similarity condition
+    Test the course similarity condition
     """
     rec = courserecommender()
     output = rec.get_umap(['ECE 143'])
@@ -13,7 +11,7 @@ def test_umap():
 
 def test_recommendation():
     """
-    test the recommmender with key word and course name
+    Test the recommmender with key word and course name
     """
     rec = courserecommender()
     output = json.loads(rec.get_recommendation(input_string=['ECE 143','Signal'],number_of_recommend=10).json())

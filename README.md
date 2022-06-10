@@ -1,4 +1,5 @@
 # ECE229_Group11_Project<br>
+
 This is a project for ECE229 course work of Group 11<br>
 We have built a recommendation system which helps student in recommending course for their quarter.<br>
 Whole project is split into two mini folder recommendation system and frontend<br>
@@ -13,3 +14,5 @@ this will run two docker containers<br>
 Website IP and port=5000 can be used to open the link from the browser<br>
 ex: 172.10.0.2:5000/ -> will open the website<br>
 
+# Path to sphinx documentation: <br>
+docs/build/html/index.html

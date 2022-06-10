@@ -3,19 +3,20 @@ import numpy as np
 import pandas as pd
 from typing import List
 import os
-from frontend.dataobj import bar,bardata
+from .dataobj import bar,bardata
 import re
 from collections import defaultdict
 
 class course_eval():
     """
-    Course eval is used for to retrive the course eval data
+    Course eval is used to retrieve the course evaluation data
     """
     def __init__(self,datafilename:str='data/data.csv') -> None:
         """
         Initialze the obj with the dataframe class
-        Args:
-            datafilename (str, optional): path for the data. Defaults to 'data/data.csv'.
+        
+        :param datafilename: path for the data. Defaults to 'data/data.csv'.
+        :type datafilename: str
         """
         assert os.path.isfile(datafilename),'file not present in the path'
         self.df = pd.read_csv(datafilename)
@@ -29,28 +30,27 @@ class course_eval():
     def getprofname(self,department:str)->List:
         """
         Return the list of  prof names from the department
-        Args:
-            department (str): Name of the department
-
-        Returns:
-            List: prof names
+        
+        :param department: Name of the department
+        :type department: str
+        :return: List: prof names
         """
         return sorted(list(self.profname[department]))
     
     def getdeptname(self)->List:
         """
         Returns all the departments 
-        Returns:
-            List:  list of department name
+        
+        :return: List:  list of department name
         """
         return sorted(list(self.deparments))
     def get_radar_plotdetails(self,course:str)->List:
         """
         Return the Radar plot details for the given course
-        Args:
-            course (str): course name for which radar plot is shown
-        Returns:
-            List: _description_
+        
+        :param course: course name for which radar plot is shown
+        :type course: str or None
+        :return: List: _description_
         """
         theta=['Recommend Course','Rcmnd Instr','Time',
            'GPA Expected', 'GPA Actual']
@@ -68,12 +68,10 @@ class course_eval():
     def get_GPA_details(self,course:str)->List:
         """
         Return Bar plot details for the given course
-        Args:
-            course (str): course name for which bar plot is shown
-        
 
-        Returns:
-            List: _description_
+        :param course: course name for which bar plot is shown
+        :type course: str or None
+        :return: List: __description__
         """
         if course not in set(self.df['course']):
             return None,None
@@ -86,12 +84,10 @@ class course_eval():
     def get_instr_details(self,instr:str)->List:
         """
         Return Radar plot details for the given course
-        Args:
-            course (str): course name for which radar plot is shown
-        
 
-        Returns:
-            List: _description_
+        :param course: course name for which radar plot is shown
+        :type course: str or None
+        :return: List: __description__
         """
         if instr not in set(self.df['instr']):
             return None,None
@@ -108,12 +104,10 @@ class course_eval():
     def get_instr_course_info(self,instr:str)->List:
         """
         Return Bar plot details for the selected instructor
-        Args:
-            instr (str): instructor name for which bar plot is shown
-            
-            
-       Returns:
-            List: _description_
+        
+        :param instr: instructor name for which bar plot is shown
+        :type instr: str or None
+        :return: List: _description_
        """
         grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F']
         grades = reversed(grades)

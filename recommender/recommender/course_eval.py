@@ -13,8 +13,9 @@ class course_eval():
     def __init__(self,datafilename:str='./data/data.csv') -> None:
         """
         Initialze the obj with the dataframe class
-        Args:
-            datafilename (str, optional): path for the data. Defaults to 'data/data.csv'.
+        
+        :param datafilename: path for the data. Defaults to 'data/data.csv'.
+        :type datafilename: str
         """
         assert os.path.isfile(datafilename),'file not present in the path'
         self.df = pd.read_csv(datafilename)
@@ -28,29 +29,28 @@ class course_eval():
     def getprofname(self,department:str)->List:
         """
         Return the list of  prof names from the department
-        Args:
-            department (str): Name of the department
-
-        Returns:
-            List: prof names
+        
+        :param department: Name of the department
+        :type department: str
+        :return: prof names
         """
         return sorted(list(self.profname[department]))
     
     def getdeptname(self)->List:
         """
         Returns all the departments 
-        Returns:
-            List:  list of department name
+        
+        :return: list of department name
         """
         return sorted(list(self.deparments))
         
     def get_radar_plotdetails(self,course:str)->List:
         """
         Return the Radar plot details for the given course
-        Args:
-            course (str): course name for to be plotted
-        Returns:
-            List: _description_
+        
+        :param course: course name for which radar plot is shown
+        :type course: str
+        :return: List of parameters for radar plot
         """
         theta=['Recommend_Course','Rcmnd_Instr','Time',
            'GPA_Expected', 'GPA_Actual']

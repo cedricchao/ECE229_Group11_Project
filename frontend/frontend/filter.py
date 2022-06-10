@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from Letter import *
+from .Letter import *
 
 
 
@@ -60,18 +60,35 @@ def department_filter(df, dep):
     return df[[c.split()[0] in dep for c in df['course']]]
         
 class Filter():
+    """
+    Filter class is used to retrieve recommended courses based on input filters
+    """
     def __init__(self, df_path):
-        '''
-        letter: string
-        gpa: float
-        time: float
-        rec_class: float [0, 1]
-        rec_instr: float [0, 1]
-        dep: list of string
-        '''
+        """
+        Initialize Filter
+
+        :param df_path: directory path of dataframe of all UCSD courses
+        :type df_path: str
+        """
         self.df = pd.read_csv(df_path)
 
     def run(self, letter=None, gpa=None, time=None, rec_class=None, rec_instr=None, dep=None):
+        """
+        Run the filter and provide recommended courses along with descriptions
+
+        :param letter: letter grade e.g. A-, B+, A+
+        :param gpa: 3.2, 3.8
+        :type gpa: float
+        :param time: weekly study hours e.g. 10, 20
+        :type time: float
+        :param rec_class: probability for class to be recommended in [0, 1]
+        :type rec_class: float
+        :param rec_instr: probability for instructor to be recommended in [0, 1]
+        :type rec_instr: float
+        :param dep: list of department codes e.g. CSE, ECE, PHIL
+        :type dep: List[str]
+        :return: dataframe of recommended courses
+        """
         assert not dep or isinstance(dep, list)
 
         df = self.df.copy()

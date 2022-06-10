@@ -1,12 +1,12 @@
 from ast import keyword
-from .course_eval import course_eval
+from course_eval import course_eval
 import numpy as np
 import pickle as pk
 from sentence_transformers import SentenceTransformer
 import faiss
 import scipy
 import pandas as pd
-from .dataobj import coursereq, recommend
+from dataobj import coursereq, recommend
 from typing import List,Dict
 
 class Planner():
@@ -21,11 +21,14 @@ class Planner():
         """
         Help to plan the course for the quater given the three course key and additional inputs 
     
-        Args:
-            course_map_file (str, optional): _description_. Defaults to 'data/coursemap.pk'.
-            coursemap_back_file (str, optional): _description_. Defaults to 'data/coursemap_back.pk'.
-            coursemap_desp_file (str, optional): _description_. Defaults to 'data/coursemap_despk.pk'.
-            embedding_file (str, optional): _description_. Defaults to './data/sentence_embedding.npy'.
+        :param course_map_file: _description_. Defaults to 'data/coursemap.pk'.
+        :type course_map_file: str
+        :param coursemap_back_file: _description_. Defaults to 'data/coursemap_back.pk'.
+        :type coursemap_back_file: str
+        :param coursemap_desp_file: _description_. Defaults to 'data/coursemap_despk.pk'.
+        :type coursemap_desp_file: str
+        :param embedding_file: _description_. Defaults to './data/sentence_embedding.npy'.
+        :type embedding_file: str
         """
         with open(course_map_file,'rb') as ftp:
             self.course_map = pk.load(ftp)
@@ -42,17 +45,18 @@ class Planner():
         self.info_key = set(self.df['course'])
         self.course_data = course_eval()
 
-    def get_couse_list(self,department:List[str],cousre_key:str,num_of_course:int=10) -> List:
+    def get_course_list(self,department:List[str],course_key:str,num_of_course:int=10) -> List:
         """
-        given a string it gives similar courses from selected department and 
-        returned list of courses has lent num of course
-        Args:
-            department (List[str]): List of department names used to recommend the course from 
-            cousre_key (str): key of the course which the resultant course should be similar to 
-            num_of_course (int, optional): length of courses that is similar to the key. Defaults to 10.
-
-        Returns:
-            List: returns the list of courses that match the course key
+        Return similar courses from selected department and 
+        returned list of courses has len same as num of course
+        
+        :param department: List of department names used to recommend the course from 
+        :type department:  List[str]
+        :param course_key: key of the course which the resultant course should be similar to 
+        :type course_key:  str
+        :param num_of_course: length of courses that is similar to the key. Defaults to 10.
+        :type num_of_course: int
+        :return: List: returns the list of courses that match the course key
         """
         course_mini_map={}
         for i in self.info_key:
@@ -63,18 +67,20 @@ class Planner():
         course_mini_map = {name:i for i,name in enumerate(course_mini_map_back.values())}
         fai = faiss.IndexFlatL2(384)
         fai.add(sentence_embedding_np_small)
-        D,I = fai.search(self.model.encode(cousre_key,normalize_embeddings=True).reshape(1,-1),num_of_course)
+        D,I = fai.search(self.model.encode(course_key,normalize_embeddings=True).reshape(1,-1),num_of_course)
         return [course_mini_map_back[i] for i in I[0]]
     
     def get_recommendation(self,courses:List[coursereq]) -> List[Dict[str,coursereq]]:
         """
-        Return the list of possible combination of courses
-        Args:
-            courses (_type_): List of Courses with requiements for each courses
+        Provide the list of possible combination of courses given requirements
+        
+        :param courses: List of Courses with requiements for each courses
+        :type courses: List[coursereq]
+        :return: Return the list of dict of possible combination of courses given requirements
         """
-        list_a = self.get_couse_list(courses[0].department,courses[0].keyword,5)
-        list_b = self.get_couse_list(courses[1].department,courses[1].keyword,5)
-        list_c = self.get_couse_list(courses[2].department,courses[2].keyword,5)
+        list_a = self.get_course_list(courses[0].department,courses[0].keyword,5)
+        list_b = self.get_course_list(courses[1].department,courses[1].keyword,5)
+        list_c = self.get_course_list(courses[2].department,courses[2].keyword,5)
         final_list = dict(enumerate(set(list_a+list_b+list_c)))
 
         time_cost = np.zeros((3,len(final_list)))

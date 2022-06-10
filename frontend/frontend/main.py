@@ -4,9 +4,9 @@ from flask import render_template
 from flask import request
 import requests
 import json
-from couse_eval import course_eval
-from dataobj import radar,radardata,bar,bardata,FilterHtmlData
-from filter import *
+from .couse_eval import course_eval
+from .dataobj import radar,radardata,bar,bardata,FilterHtmlData
+from .filter import *
 import os
 
 df_path = './data/data.csv'

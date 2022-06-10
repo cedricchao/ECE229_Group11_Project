@@ -8,7 +8,10 @@ from collections import defaultdict
 
 def test_getprofname(datafilename='./data/data.csv'):
     """
-    test the get profname for the given department
+    Test the get profname for the given department
+
+    :param datafilename: filename of the data. Defaults to './data/data.csv'.
+    :type datafilename: str
     """
     cou = course_eval()
     df = pd.read_csv(datafilename)
@@ -24,9 +27,9 @@ def test_getprofname(datafilename='./data/data.csv'):
 def test_getdeptname(datafilename='./data/data.csv'):
     """
     Test the list of departments
-
-    Args:
-        datafilename (str, optional): filename of the data. Defaults to './data/data.csv'.
+    
+    :param datafilename: filename of the data. Defaults to './data/data.csv'.
+    :type datafilename: str
     """
     cou = course_eval()
     df = pd.read_csv(datafilename)
@@ -35,7 +38,7 @@ def test_getdeptname(datafilename='./data/data.csv'):
 
 def test_radar_plot():
     """
-    test if the radar plot return the course details
+    Test if the radar plot return the course details
     """
     output1 = ['Recommend_Course','Rcmnd_Instr','Time',
            'GPA_Expected', 'GPA_Actual']
