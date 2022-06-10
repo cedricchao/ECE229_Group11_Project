@@ -2,8 +2,8 @@ import numpy as np
 import os
 import pickle as pk
 import faiss
-from Embedding_extraction import get_embedding,get_model
-from dataobj import recommend,obj,vectordict,vector
+from recommender.Embedding_extraction import get_embedding,get_model
+from recommender.dataobj import recommend,obj,vectordict,vector
 
 class courserecommender():
     """

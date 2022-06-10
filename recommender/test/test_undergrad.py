@@ -8,7 +8,7 @@ def test_course_list():
     test if the recommendation for a key is from the input department only
     """
     plan = Planner()
-    out = plan.get_couse_list(['ECE'],'signal')
+    out = plan.get_course_list(['ECE'],'signal')
     for cou in out:
         assert 'ECE' in cou.split()[0]
 

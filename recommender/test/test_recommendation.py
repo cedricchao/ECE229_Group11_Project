@@ -1,6 +1,7 @@
 import os
 import json
-
+from recommender.recommendation import courserecommender
+from recommender.dataobj import vector
 def test_umap():
     """
     Test the course similarity condition

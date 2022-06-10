@@ -1,12 +1,12 @@
 from ast import keyword
-from course_eval import course_eval
+from recommender.course_eval import course_eval
 import numpy as np
 import pickle as pk
 from sentence_transformers import SentenceTransformer
 import faiss
 import scipy
 import pandas as pd
-from dataobj import coursereq, recommend
+from recommender.dataobj import coursereq, recommend
 from typing import List,Dict
 
 class Planner():
