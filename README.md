@@ -14,5 +14,5 @@ this will run two docker containers<br>
 Website IP and port=5000 can be used to open the link from the browser<br>
 ex: 172.10.0.2:5000/ -> will open the website<br>
 
-Path to sphinx documentation: <br>
+# Path to sphinx documentation: <br>
 docs/build/html/index.html
