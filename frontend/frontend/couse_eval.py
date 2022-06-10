@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from typing import List
 import os
-from frontend.dataobj import bar,bardata
+from .dataobj import bar,bardata
 import re
 from collections import defaultdict
 
