@@ -1,5 +1,5 @@
 # ECE229_Group11_Project<br>
-<<<<<<< HEAD
+
 Run docker-compose up -t test <br>
 this will run two docker containers<br>
 =======
@@ -16,5 +16,5 @@ Run docker-compose up -t test <br>
 this will run two docker containers<br>
 Website IP and port=5000 can be used to open the link from the browser<br>
 ex: 172.10.0.2:5000/ -> will open the website<br>
->>>>>>> main
+
 
