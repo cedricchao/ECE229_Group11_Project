@@ -16,3 +16,12 @@ ex: 172.10.0.2:5000/ -> will open the website<br>
 
 # Path to sphinx documentation: <br>
 docs/build/html/index.html
+
+## To Test Code <br>
+### Recommendation system test <br>
+path: recommender <br>
+command: pytest <br>
+
+### Frontend test <br>
+path: frontend/frontend <br>
+command: pytest <br>
