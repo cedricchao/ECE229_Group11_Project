@@ -6,7 +6,7 @@ Whole project is split into two mini folder recommendation system and frontend<b
 Each mini system is isolated and communicate using http<br>
 Recommender folder house the code and test case for the recommendation system.<br>
 Frontend folder house the code and test case for the website to host service.<br>
-Both the services are contanierized and can be easily run by the docker-compose<br>
+Both the services are containerized and can be easily run by the docker-compose<br>
 Instruction to run docker-compose:<br>
 
 Run docker-compose up -t test <br>
